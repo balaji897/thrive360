@@ -6,7 +6,8 @@ import { X, Plus, AlertCircle, Check } from 'lucide-react';
 interface CreateInterventionModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onCreated: () => void;
+  onCreated?: () => void;
+  onSuccess?: () => void;
   defaultStudentId?: string;
   defaultStudentName?: string;
   defaultCategory?: string;
@@ -19,6 +20,7 @@ export const CreateInterventionModal: React.FC<CreateInterventionModalProps> = (
   isOpen,
   onClose,
   onCreated,
+  onSuccess,
   defaultStudentId = '',
   defaultStudentName = '',
   defaultCategory = 'Academic',
@@ -92,7 +94,8 @@ export const CreateInterventionModal: React.FC<CreateInterventionModalProps> = (
         notes
       };
       await api.createIntervention(payload);
-      onCreated();
+      if (onCreated) onCreated();
+      if (onSuccess) onSuccess();
       onClose();
     } catch (err: any) {
       setError(err.message || 'Failed to record intervention');

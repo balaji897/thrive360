@@ -24,7 +24,42 @@ import {
   SimulationResult
 } from '../types';
 
-const API_BASE = '/api/v1';
+/**
+ * Resolves the backend API base URL.
+ * Supports VITE_API_BASE_URL environment variable provided by Vercel or local .env.
+ * Automatically cleans trailing slashes and ensures the '/api/v1' prefix is correctly formatted
+ * without omission or duplication. Falls back to '/api/v1' for local Vite dev proxy.
+ */
+export function resolveApiBaseUrl(rawBaseUrl?: string): string {
+  const envUrl = (
+    rawBaseUrl ??
+    (typeof import.meta !== 'undefined' ? (import.meta as any)?.env?.VITE_API_BASE_URL : '')
+  ) || '';
+  const trimmed = envUrl.trim();
+
+  // If unset or empty, use relative path (works with Vite dev server proxy in development)
+  if (!trimmed) {
+    return '/api/v1';
+  }
+
+  // Remove trailing slashes
+  const clean = trimmed.replace(/\/+$/, '');
+
+  // If the provided URL already ends with '/api/v1', keep it as is
+  if (clean.endsWith('/api/v1')) {
+    return clean;
+  }
+
+  // If the provided URL ends with '/api', append '/v1'
+  if (clean.endsWith('/api')) {
+    return `${clean}/v1`;
+  }
+
+  // Otherwise append '/api/v1'
+  return `${clean}/api/v1`;
+}
+
+export const API_BASE = resolveApiBaseUrl();
 
 export function getAuthHeaders(): Record<string, string> {
   try {
@@ -41,15 +76,50 @@ export function getAuthHeaders(): Record<string, string> {
 
 async function handleResponse<T>(res: Response): Promise<T> {
   if (!res.ok) {
-    const errorData = await res.json().catch(() => ({}));
+    let errorData: any = {};
+    try {
+      errorData = await res.json();
+    } catch {
+      // Body may be plain text, HTML, or empty
+    }
+
     if (res.status === 401) {
       // Clear expired session if 401 returned
       sessionStorage.removeItem('thrive360_session');
     }
-    const detailMsg = errorData.detail || (res.status === 404 ? 'Requested resource or API endpoint not found on server.' : `Request failed with status ${res.status}`);
+
+    let detailMsg = '';
+    if (typeof errorData?.detail === 'string') {
+      detailMsg = errorData.detail;
+    } else if (Array.isArray(errorData?.detail)) {
+      // Format FastAPI/Pydantic validation error lists: [{loc: [...], msg: "..."}]
+      detailMsg = errorData.detail
+        .map((item: any) => (item?.msg ? `${item.loc ? item.loc.join('.') + ': ' : ''}${item.msg}` : JSON.stringify(item)))
+        .join('; ');
+    } else if (errorData?.detail && typeof errorData.detail === 'object') {
+      detailMsg = JSON.stringify(errorData.detail);
+    } else if (typeof errorData?.message === 'string') {
+      detailMsg = errorData.message;
+    } else if (typeof errorData?.error === 'string') {
+      detailMsg = errorData.error;
+    } else if (res.status === 404) {
+      detailMsg = 'Requested resource or API endpoint not found on server.';
+    } else {
+      detailMsg = `Request failed with status ${res.status}`;
+    }
+
     throw new Error(detailMsg);
   }
-  return res.json();
+
+  if (res.status === 204) {
+    return undefined as unknown as T;
+  }
+
+  try {
+    return await res.json();
+  } catch (err: any) {
+    throw new Error(`Failed to parse server response as JSON (${err?.message || 'invalid JSON'}).`);
+  }
 }
 
 export const api = {
@@ -102,39 +172,53 @@ export const api = {
     if (params.page) query.append('page', params.page.toString());
     if (params.page_size) query.append('page_size', params.page_size.toString());
 
-    const res = await fetch(`${API_BASE}/students?${query.toString()}`);
+    const queryString = query.toString();
+    const url = queryString ? `${API_BASE}/students?${queryString}` : `${API_BASE}/students`;
+    const res = await fetch(url, {
+      headers: { ...getAuthHeaders() }
+    });
     return handleResponse<StudentListResponse>(res);
   },
 
   getStudentDetail: async (studentId: string): Promise<UnifiedStudent> => {
-    const res = await fetch(`${API_BASE}/students/${studentId}`, {
+    const res = await fetch(`${API_BASE}/students/${encodeURIComponent(studentId)}`, {
       headers: { ...getAuthHeaders() },
     });
     return handleResponse<UnifiedStudent>(res);
   },
 
   getSegments: async (): Promise<StudentSegment[]> => {
-    const res = await fetch(`${API_BASE}/analytics/segments`);
+    const res = await fetch(`${API_BASE}/analytics/segments`, {
+      headers: { ...getAuthHeaders() }
+    });
     return handleResponse<StudentSegment[]>(res);
   },
 
   getRiskAnalytics: async (): Promise<{ department_heatmap: RiskHeatmapData[]; cross_risk_matrix: CrossRiskMatrix }> => {
-    const res = await fetch(`${API_BASE}/analytics/risks`);
+    const res = await fetch(`${API_BASE}/analytics/risks`, {
+      headers: { ...getAuthHeaders() }
+    });
     return handleResponse<{ department_heatmap: RiskHeatmapData[]; cross_risk_matrix: CrossRiskMatrix }>(res);
   },
 
   getMLMetrics: async (): Promise<MLModelMetrics> => {
-    const res = await fetch(`${API_BASE}/analytics/ml-model`);
+    const res = await fetch(`${API_BASE}/analytics/ml-model`, {
+      headers: { ...getAuthHeaders() }
+    });
     return handleResponse<MLModelMetrics>(res);
   },
 
   getMLIntelligence: async (): Promise<MLModelMetrics> => {
-    const res = await fetch(`${API_BASE}/analytics/intelligence`);
+    const res = await fetch(`${API_BASE}/analytics/intelligence`, {
+      headers: { ...getAuthHeaders() }
+    });
     return handleResponse<MLModelMetrics>(res);
   },
 
   getCrossSourceInsights: async (): Promise<CrossSourceInsight[]> => {
-    const res = await fetch(`${API_BASE}/analytics/cross-insights`);
+    const res = await fetch(`${API_BASE}/analytics/cross-insights`, {
+      headers: { ...getAuthHeaders() }
+    });
     return handleResponse<CrossSourceInsight[]>(res);
   },
 
@@ -157,10 +241,10 @@ export const api = {
     return handleResponse<PriorityQueueResponse>(res);
   },
 
-
-
   getDataQualityReport: async (): Promise<DataQualityReport> => {
-    const res = await fetch(`${API_BASE}/data-quality`);
+    const res = await fetch(`${API_BASE}/data-quality`, {
+      headers: { ...getAuthHeaders() }
+    });
     return handleResponse<DataQualityReport>(res);
   },
 
@@ -176,7 +260,12 @@ export const api = {
     if (params?.priority) query.append('priority', params.priority);
     if (params?.category) query.append('category', params.category);
 
-    const res = await fetch(`${API_BASE}/interventions?${query.toString()}`);
+    const queryString = query.toString();
+    const url = queryString ? `${API_BASE}/interventions?${queryString}` : `${API_BASE}/interventions`;
+
+    const res = await fetch(url, {
+      headers: { ...getAuthHeaders() }
+    });
     return handleResponse<Intervention[]>(res);
   },
 
@@ -196,7 +285,7 @@ export const api = {
     studentId: string,
     params: SimulationRequest
   ): Promise<SimulationResult> => {
-    const res = await fetch(`${API_BASE}/students/${studentId}/simulate`, {
+    const res = await fetch(`${API_BASE}/students/${encodeURIComponent(studentId)}/simulate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -208,32 +297,39 @@ export const api = {
   },
 
   updateIntervention: async (id: string, updates: Partial<Intervention>): Promise<Intervention> => {
-    const res = await fetch(`${API_BASE}/interventions/${id}`, {
+    const res = await fetch(`${API_BASE}/interventions/${encodeURIComponent(id)}`, {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeaders()
+      },
       body: JSON.stringify(updates),
     });
     return handleResponse<Intervention>(res);
   },
 
   deleteIntervention: async (id: string): Promise<void> => {
-    const res = await fetch(`${API_BASE}/interventions/${id}`, {
+    const res = await fetch(`${API_BASE}/interventions/${encodeURIComponent(id)}`, {
       method: 'DELETE',
+      headers: { ...getAuthHeaders() },
     });
-    if (!res.ok) {
-      throw new Error(`Failed to delete intervention with status ${res.status}`);
-    }
+    await handleResponse<void>(res);
   },
 
   getScoringWeights: async (): Promise<ScoringWeights> => {
-    const res = await fetch(`${API_BASE}/config/scoring-weights`);
+    const res = await fetch(`${API_BASE}/config/scoring-weights`, {
+      headers: { ...getAuthHeaders() }
+    });
     return handleResponse<ScoringWeights>(res);
   },
 
   updateScoringWeights: async (weights: ScoringWeights): Promise<ScoringWeights> => {
     const res = await fetch(`${API_BASE}/config/scoring-weights`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        ...getAuthHeaders()
+      },
       body: JSON.stringify(weights),
     });
     return handleResponse<ScoringWeights>(res);
@@ -257,17 +353,26 @@ export const api = {
     if (params?.page) query.append('page', params.page.toString());
     if (params?.page_size) query.append('page_size', params.page_size.toString());
 
-    const res = await fetch(`${API_BASE}/faculty?${query.toString()}`);
+    const queryString = query.toString();
+    const url = queryString ? `${API_BASE}/faculty?${queryString}` : `${API_BASE}/faculty`;
+
+    const res = await fetch(url, {
+      headers: { ...getAuthHeaders() }
+    });
     return handleResponse<FacultyListResponse>(res);
   },
 
   getFacultyStats: async (): Promise<FacultyStats> => {
-    const res = await fetch(`${API_BASE}/faculty/stats`);
+    const res = await fetch(`${API_BASE}/faculty/stats`, {
+      headers: { ...getAuthHeaders() }
+    });
     return handleResponse<FacultyStats>(res);
   },
 
   getFacultyDetail: async (facultyId: string): Promise<FacultyMember> => {
-    const res = await fetch(`${API_BASE}/faculty/${facultyId}`);
+    const res = await fetch(`${API_BASE}/faculty/${encodeURIComponent(facultyId)}`, {
+      headers: { ...getAuthHeaders() }
+    });
     return handleResponse<FacultyMember>(res);
   },
 
@@ -290,6 +395,7 @@ export const api = {
   logout: async (): Promise<{ success: boolean; message: string }> => {
     const res = await fetch(`${API_BASE}/auth/logout`, {
       method: 'POST',
+      headers: { ...getAuthHeaders() },
     });
     sessionStorage.removeItem('thrive360_session');
     return handleResponse<{ success: boolean; message: string }>(res);

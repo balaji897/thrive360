@@ -338,7 +338,7 @@ export const StudentDetailPage: React.FC<StudentDetailPageProps> = ({
             </div>
           </div>
           <p className="text-[11px] text-slate-500 mt-2 pt-2 border-t border-slate-100">
-            Mock Interview: {student.placement.mock_interview_avg_score.toFixed(0)} • Risk Index: {student.placement.risk_score || student.placement_risk.score}/100
+            Mock Interview: {student.placement.mock_interview_avg_score.toFixed(0)} • Risk Index: {student.placement_risk.score}/100
           </p>
         </div>
 
