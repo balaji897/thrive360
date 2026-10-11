@@ -1,0 +1,249 @@
+{
+  "timestamp": "2026-10-11T03:12:34.135592",
+  "total_source_files": 6,
+  "total_raw_records": 1500,
+  "integrated_student_count": 250,
+  "expected_student_count": 250,
+  "id_match_rate_percentage": 100.0,
+  "files": [
+    {
+      "filename": "students_250_cleaned.csv",
+      "purpose": "Academic marks, attendance by subject, backlogs, and CGPA",
+      "record_count": 250,
+      "column_count": 17,
+      "columns": [
+        "Student_ID",
+        "Name",
+        "Department",
+        "Year",
+        "CGPA",
+        "Maths_Marks",
+        "Physics_Marks",
+        "Programming_Marks",
+        "DBMS_Marks",
+        "OS_Marks",
+        "Backlogs",
+        "Maths_Attendance_%",
+        "Physics_Attendance_%",
+        "Programming_Attendance_%",
+        "DBMS_Attendance_%",
+        "OS_Attendance_%",
+        "Overall_Attendance_%"
+      ],
+      "missing_value_counts": {
+        "Student_ID": 0,
+        "Name": 0,
+        "Department": 0,
+        "Year": 0,
+        "CGPA": 0,
+        "Maths_Marks": 0,
+        "Physics_Marks": 0,
+        "Programming_Marks": 0,
+        "DBMS_Marks": 0,
+        "OS_Marks": 0,
+        "Backlogs": 0,
+        "Maths_Attendance_%": 0,
+        "Physics_Attendance_%": 0,
+        "Programming_Attendance_%": 0,
+        "DBMS_Attendance_%": 0,
+        "OS_Attendance_%": 0,
+        "Overall_Attendance_%": 0
+      },
+      "duplicate_record_count": 0,
+      "unique_student_ids": 250,
+      "id_format_valid": true,
+      "status": "VALIDATED"
+    },
+    {
+      "filename": "students_lms_250.csv",
+      "purpose": "Learning Management System (LMS) login frequency",
+      "record_count": 250,
+      "column_count": 3,
+      "columns": [
+        "Student_ID",
+        "Name",
+        "LMS_Login_Frequency"
+      ],
+      "missing_value_counts": {
+        "Student_ID": 0,
+        "Name": 0,
+        "LMS_Login_Frequency": 0
+      },
+      "duplicate_record_count": 0,
+      "unique_student_ids": 250,
+      "id_format_valid": true,
+      "status": "VALIDATED"
+    },
+    {
+      "filename": "students_activities_250.csv",
+      "purpose": "Campus events, club participation, hackathons, and certifications",
+      "record_count": 250,
+      "column_count": 9,
+      "columns": [
+        "Student_ID",
+        "Name",
+        "Events_Participated",
+        "Clubs_Joined_Count",
+        "Club_Names",
+        "Hackathons_Participated",
+        "Hackathons_Won",
+        "Certifications_Count",
+        "Certification_Names"
+      ],
+      "missing_value_counts": {
+        "Student_ID": 0,
+        "Name": 0,
+        "Events_Participated": 0,
+        "Clubs_Joined_Count": 0,
+        "Club_Names": 99,
+        "Hackathons_Participated": 0,
+        "Hackathons_Won": 0,
+        "Certifications_Count": 0,
+        "Certification_Names": 64
+      },
+      "duplicate_record_count": 0,
+      "unique_student_ids": 250,
+      "id_format_valid": true,
+      "status": "VALIDATED"
+    },
+    {
+      "filename": "students_placement_readiness_250.csv",
+      "purpose": "Aptitude, coding scores, and mock interview performance",
+      "record_count": 250,
+      "column_count": 6,
+      "columns": [
+        "Student_ID",
+        "Name",
+        "Aptitude_Score",
+        "Coding_Score",
+        "Mock_Interviews_Attended",
+        "Mock_Interview_Avg_Score"
+      ],
+      "missing_value_counts": {
+        "Student_ID": 0,
+        "Name": 0,
+        "Aptitude_Score": 0,
+        "Coding_Score": 0,
+        "Mock_Interviews_Attended": 0,
+        "Mock_Interview_Avg_Score": 0
+      },
+      "duplicate_record_count": 0,
+      "unique_student_ids": 250,
+      "id_format_valid": true,
+      "status": "VALIDATED"
+    },
+    {
+      "filename": "students_skill_assessments_250.csv",
+      "purpose": "Technical assessments and multi-dimensional soft skills assessments",
+      "record_count": 250,
+      "column_count": 10,
+      "columns": [
+        "Student_ID",
+        "Name",
+        "Technical_Assessment_Score",
+        "Technical_Assessments_Attempted",
+        "Communication_Skills",
+        "Teamwork",
+        "Leadership",
+        "Problem_Solving",
+        "Time_Management",
+        "Soft_Skills_Avg"
+      ],
+      "missing_value_counts": {
+        "Student_ID": 0,
+        "Name": 0,
+        "Technical_Assessment_Score": 0,
+        "Technical_Assessments_Attempted": 0,
+        "Communication_Skills": 0,
+        "Teamwork": 0,
+        "Leadership": 0,
+        "Problem_Solving": 0,
+        "Time_Management": 0,
+        "Soft_Skills_Avg": 0
+      },
+      "duplicate_record_count": 0,
+      "unique_student_ids": 250,
+      "id_format_valid": true,
+      "status": "VALIDATED"
+    },
+    {
+      "filename": "students_feedback_250.csv",
+      "purpose": "Student satisfaction, faculty ratings, and campus experience survey",
+      "record_count": 250,
+      "column_count": 13,
+      "columns": [
+        "Student_ID",
+        "Name",
+        "Overall_Satisfaction",
+        "Teaching_Quality_Satisfaction",
+        "Infrastructure_Satisfaction",
+        "Campus_Life_Satisfaction",
+        "Placement_Support_Satisfaction",
+        "Faculty_Subject_Knowledge",
+        "Faculty_Communication",
+        "Faculty_Punctuality",
+        "Faculty_Doubt_Clearing",
+        "Faculty_Feedback_Avg",
+        "Would_Recommend_College"
+      ],
+      "missing_value_counts": {
+        "Student_ID": 0,
+        "Name": 0,
+        "Overall_Satisfaction": 0,
+        "Teaching_Quality_Satisfaction": 0,
+        "Infrastructure_Satisfaction": 0,
+        "Campus_Life_Satisfaction": 0,
+        "Placement_Support_Satisfaction": 0,
+        "Faculty_Subject_Knowledge": 0,
+        "Faculty_Communication": 0,
+        "Faculty_Punctuality": 0,
+        "Faculty_Doubt_Clearing": 0,
+        "Faculty_Feedback_Avg": 0,
+        "Would_Recommend_College": 0
+      },
+      "duplicate_record_count": 0,
+      "unique_student_ids": 250,
+      "id_format_valid": true,
+      "status": "VALIDATED"
+    }
+  ],
+  "unmatched_student_ids": [],
+  "category_coverage": {
+    "Academics & Attendance": {
+      "available": true,
+      "source": "students_250_cleaned.csv",
+      "field_count": 15
+    },
+    "LMS Activity": {
+      "available": true,
+      "source": "students_lms_250.csv",
+      "field_count": 1
+    },
+    "Extracurricular & Certs": {
+      "available": true,
+      "source": "students_activities_250.csv",
+      "field_count": 7
+    },
+    "Placement Readiness": {
+      "available": true,
+      "source": "students_placement_readiness_250.csv",
+      "field_count": 4
+    },
+    "Skill Assessments": {
+      "available": true,
+      "source": "students_skill_assessments_250.csv",
+      "field_count": 8
+    },
+    "Institutional Feedback": {
+      "available": true,
+      "source": "students_feedback_250.csv",
+      "field_count": 13
+    }
+  },
+  "data_quality_warnings": [
+    "Club_Names contains 99 null entries corresponding to students with Clubs_Joined_Count = 0 (handled legitimately as empty list).",
+    "Certification_Names contains 64 null entries corresponding to students with Certifications_Count = 0 (handled legitimately as empty list).",
+    "Mock_Interview_Avg_Score has value 0 for students with Mock_Interviews_Attended = 0 (blended safely without score distortion)."
+  ],
+  "provenance_summary": "Deterministic 6-way inner join on normalized Student_ID (STU001-STU250) with zero data loss."
+}

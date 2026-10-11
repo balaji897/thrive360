@@ -1,0 +1,351 @@
+{
+  "students": {
+    "file": "students_250_cleaned (1).csv",
+    "rows": 250,
+    "columns": [
+      "Student_ID",
+      "Name",
+      "Department",
+      "Year",
+      "CGPA",
+      "Maths_Marks",
+      "Physics_Marks",
+      "Programming_Marks",
+      "DBMS_Marks",
+      "OS_Marks",
+      "Backlogs",
+      "Maths_Attendance_%",
+      "Physics_Attendance_%",
+      "Programming_Attendance_%",
+      "DBMS_Attendance_%",
+      "OS_Attendance_%",
+      "Overall_Attendance_%"
+    ],
+    "missing_values": {
+      "Student_ID": 0,
+      "Name": 0,
+      "Department": 0,
+      "Year": 0,
+      "CGPA": 0,
+      "Maths_Marks": 0,
+      "Physics_Marks": 0,
+      "Programming_Marks": 0,
+      "DBMS_Marks": 0,
+      "OS_Marks": 0,
+      "Backlogs": 0,
+      "Maths_Attendance_%": 0,
+      "Physics_Attendance_%": 0,
+      "Programming_Attendance_%": 0,
+      "DBMS_Attendance_%": 0,
+      "OS_Attendance_%": 0,
+      "Overall_Attendance_%": 0
+    },
+    "unique_students": 250,
+    "sample": [
+      {
+        "Student_ID": "STU001",
+        "Name": "Karthik Babu",
+        "Department": "IT",
+        "Year": 1,
+        "CGPA": 8.15,
+        "Maths_Marks": 77,
+        "Physics_Marks": 79,
+        "Programming_Marks": 92,
+        "DBMS_Marks": 67,
+        "OS_Marks": 57,
+        "Backlogs": 0,
+        "Maths_Attendance_%": 91,
+        "Physics_Attendance_%": 88,
+        "Programming_Attendance_%": 89,
+        "DBMS_Attendance_%": 84,
+        "OS_Attendance_%": 81,
+        "Overall_Attendance_%": 86.6
+      },
+      {
+        "Student_ID": "STU002",
+        "Name": "Divya Kumar",
+        "Department": "AI&DS",
+        "Year": 1,
+        "CGPA": 8.77,
+        "Maths_Marks": 83,
+        "Physics_Marks": 76,
+        "Programming_Marks": 75,
+        "DBMS_Marks": 86,
+        "OS_Marks": 86,
+        "Backlogs": 0,
+        "Maths_Attendance_%": 100,
+        "Physics_Attendance_%": 92,
+        "Programming_Attendance_%": 90,
+        "DBMS_Attendance_%": 80,
+        "OS_Attendance_%": 92,
+        "Overall_Attendance_%": 90.8
+      }
+    ]
+  },
+  "lms": {
+    "file": "students_lms_250.csv",
+    "rows": 250,
+    "columns": [
+      "Student_ID",
+      "Name",
+      "LMS_Login_Frequency"
+    ],
+    "missing_values": {
+      "Student_ID": 0,
+      "Name": 0,
+      "LMS_Login_Frequency": 0
+    },
+    "unique_students": 250,
+    "sample": [
+      {
+        "Student_ID": "STU001",
+        "Name": "Karthik Babu",
+        "LMS_Login_Frequency": 27
+      },
+      {
+        "Student_ID": "STU002",
+        "Name": "Divya Kumar",
+        "LMS_Login_Frequency": 28
+      }
+    ]
+  },
+  "activities": {
+    "file": "students_activities_250.csv",
+    "rows": 250,
+    "columns": [
+      "Student_ID",
+      "Name",
+      "Events_Participated",
+      "Clubs_Joined_Count",
+      "Club_Names",
+      "Hackathons_Participated",
+      "Hackathons_Won",
+      "Certifications_Count",
+      "Certification_Names"
+    ],
+    "missing_values": {
+      "Student_ID": 0,
+      "Name": 0,
+      "Events_Participated": 0,
+      "Clubs_Joined_Count": 0,
+      "Club_Names": 99,
+      "Hackathons_Participated": 0,
+      "Hackathons_Won": 0,
+      "Certifications_Count": 0,
+      "Certification_Names": 64
+    },
+    "unique_students": 250,
+    "sample": [
+      {
+        "Student_ID": "STU001",
+        "Name": "Karthik Babu",
+        "Events_Participated": 4,
+        "Clubs_Joined_Count": 1,
+        "Club_Names": "Coding Club",
+        "Hackathons_Participated": 3,
+        "Hackathons_Won": 1,
+        "Certifications_Count": 2,
+        "Certification_Names": "NPTEL; Infosys Springboard"
+      },
+      {
+        "Student_ID": "STU002",
+        "Name": "Divya Kumar",
+        "Events_Participated": 5,
+        "Clubs_Joined_Count": 1,
+        "Club_Names": "Robotics Club",
+        "Hackathons_Participated": 1,
+        "Hackathons_Won": 0,
+        "Certifications_Count": 2,
+        "Certification_Names": "Microsoft Azure Fundamentals; Coursera ML"
+      }
+    ]
+  },
+  "placement": {
+    "file": "students_placement_readiness_250.csv",
+    "rows": 250,
+    "columns": [
+      "Student_ID",
+      "Name",
+      "Aptitude_Score",
+      "Coding_Score",
+      "Mock_Interviews_Attended",
+      "Mock_Interview_Avg_Score"
+    ],
+    "missing_values": {
+      "Student_ID": 0,
+      "Name": 0,
+      "Aptitude_Score": 0,
+      "Coding_Score": 0,
+      "Mock_Interviews_Attended": 0,
+      "Mock_Interview_Avg_Score": 0
+    },
+    "unique_students": 250,
+    "sample": [
+      {
+        "Student_ID": "STU001",
+        "Name": "Karthik Babu",
+        "Aptitude_Score": 64,
+        "Coding_Score": 97,
+        "Mock_Interviews_Attended": 5,
+        "Mock_Interview_Avg_Score": 70
+      },
+      {
+        "Student_ID": "STU002",
+        "Name": "Divya Kumar",
+        "Aptitude_Score": 68,
+        "Coding_Score": 78,
+        "Mock_Interviews_Attended": 3,
+        "Mock_Interview_Avg_Score": 77
+      }
+    ]
+  },
+  "skills": {
+    "file": "students_skill_assessments_250.csv",
+    "rows": 250,
+    "columns": [
+      "Student_ID",
+      "Name",
+      "Technical_Assessment_Score",
+      "Technical_Assessments_Attempted",
+      "Communication_Skills",
+      "Teamwork",
+      "Leadership",
+      "Problem_Solving",
+      "Time_Management",
+      "Soft_Skills_Avg"
+    ],
+    "missing_values": {
+      "Student_ID": 0,
+      "Name": 0,
+      "Technical_Assessment_Score": 0,
+      "Technical_Assessments_Attempted": 0,
+      "Communication_Skills": 0,
+      "Teamwork": 0,
+      "Leadership": 0,
+      "Problem_Solving": 0,
+      "Time_Management": 0,
+      "Soft_Skills_Avg": 0
+    },
+    "unique_students": 250,
+    "sample": [
+      {
+        "Student_ID": "STU001",
+        "Name": "Karthik Babu",
+        "Technical_Assessment_Score": 100,
+        "Technical_Assessments_Attempted": 7,
+        "Communication_Skills": 59,
+        "Teamwork": 50,
+        "Leadership": 57,
+        "Problem_Solving": 84,
+        "Time_Management": 71,
+        "Soft_Skills_Avg": 64.2
+      },
+      {
+        "Student_ID": "STU002",
+        "Name": "Divya Kumar",
+        "Technical_Assessment_Score": 79,
+        "Technical_Assessments_Attempted": 5,
+        "Communication_Skills": 68,
+        "Teamwork": 68,
+        "Leadership": 55,
+        "Problem_Solving": 64,
+        "Time_Management": 68,
+        "Soft_Skills_Avg": 64.6
+      }
+    ]
+  },
+  "feedback": {
+    "file": "students_feedback_250.csv",
+    "rows": 250,
+    "columns": [
+      "Student_ID",
+      "Name",
+      "Overall_Satisfaction",
+      "Teaching_Quality_Satisfaction",
+      "Infrastructure_Satisfaction",
+      "Campus_Life_Satisfaction",
+      "Placement_Support_Satisfaction",
+      "Faculty_Subject_Knowledge",
+      "Faculty_Communication",
+      "Faculty_Punctuality",
+      "Faculty_Doubt_Clearing",
+      "Faculty_Feedback_Avg",
+      "Would_Recommend_College"
+    ],
+    "missing_values": {
+      "Student_ID": 0,
+      "Name": 0,
+      "Overall_Satisfaction": 0,
+      "Teaching_Quality_Satisfaction": 0,
+      "Infrastructure_Satisfaction": 0,
+      "Campus_Life_Satisfaction": 0,
+      "Placement_Support_Satisfaction": 0,
+      "Faculty_Subject_Knowledge": 0,
+      "Faculty_Communication": 0,
+      "Faculty_Punctuality": 0,
+      "Faculty_Doubt_Clearing": 0,
+      "Faculty_Feedback_Avg": 0,
+      "Would_Recommend_College": 0
+    },
+    "unique_students": 250,
+    "sample": [
+      {
+        "Student_ID": "STU001",
+        "Name": "Karthik Babu",
+        "Overall_Satisfaction": 2.7,
+        "Teaching_Quality_Satisfaction": 2.9,
+        "Infrastructure_Satisfaction": 3.4,
+        "Campus_Life_Satisfaction": 2.9,
+        "Placement_Support_Satisfaction": 2.7,
+        "Faculty_Subject_Knowledge": 2.6,
+        "Faculty_Communication": 3.7,
+        "Faculty_Punctuality": 3.3,
+        "Faculty_Doubt_Clearing": 3.0,
+        "Faculty_Feedback_Avg": 3.15,
+        "Would_Recommend_College": "No"
+      },
+      {
+        "Student_ID": "STU002",
+        "Name": "Divya Kumar",
+        "Overall_Satisfaction": 3.7,
+        "Teaching_Quality_Satisfaction": 3.5,
+        "Infrastructure_Satisfaction": 3.4,
+        "Campus_Life_Satisfaction": 4.9,
+        "Placement_Support_Satisfaction": 3.9,
+        "Faculty_Subject_Knowledge": 4.1,
+        "Faculty_Communication": 4.6,
+        "Faculty_Punctuality": 4.0,
+        "Faculty_Doubt_Clearing": 4.2,
+        "Faculty_Feedback_Avg": 4.22,
+        "Would_Recommend_College": "No"
+      }
+    ]
+  },
+  "id_matching": {
+    "lms": {
+      "matches_base": 250,
+      "missing_in_other": [],
+      "extra_in_other": []
+    },
+    "activities": {
+      "matches_base": 250,
+      "missing_in_other": [],
+      "extra_in_other": []
+    },
+    "placement": {
+      "matches_base": 250,
+      "missing_in_other": [],
+      "extra_in_other": []
+    },
+    "skills": {
+      "matches_base": 250,
+      "missing_in_other": [],
+      "extra_in_other": []
+    },
+    "feedback": {
+      "matches_base": 250,
+      "missing_in_other": [],
+      "extra_in_other": []
+    }
+  }
+}

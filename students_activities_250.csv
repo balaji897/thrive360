@@ -1,0 +1,251 @@
+Student_ID,Name,Events_Participated,Clubs_Joined_Count,Club_Names,Hackathons_Participated,Hackathons_Won,Certifications_Count,Certification_Names
+STU001,Karthik Babu,4,1,Coding Club,3,1,2,NPTEL; Infosys Springboard
+STU002,Divya Kumar,5,1,Robotics Club,1,0,2,Microsoft Azure Fundamentals; Coursera ML
+STU003,Divya Goud,0,0,None,0,0,0,None
+STU004,Vamsi Sharma,6,1,Cultural Club,1,1,2,Oracle Java; Infosys Springboard
+STU005,Naveen Yadav,5,0,None,0,0,1,Coursera ML
+STU006,Divya Yadav,5,1,Coding Club,0,0,0,None
+STU007,Vamsi Varma,0,0,None,0,0,1,Coursera ML
+STU008,Keerthi Singh,3,2,NSS; Coding Club,0,0,1,Coursera ML
+STU009,Sravani Babu,4,0,None,2,0,1,Google Data Analytics
+STU010,Manoj Sharma,5,0,None,1,0,1,Coursera ML
+STU011,Karthik Kumar,4,2,IEEE Student Chapter; Sports Club,2,1,1,AWS Cloud Practitioner
+STU012,Kiran Prasad,7,1,IEEE Student Chapter,1,0,2,NPTEL; Microsoft Azure Fundamentals
+STU013,Vivaan Varma,1,1,IEEE Student Chapter,3,1,1,Infosys Springboard
+STU014,Vivaan Gupta,8,2,Sports Club; Robotics Club,3,0,0,None
+STU015,Charan Nair,9,0,None,2,0,2,Infosys Springboard; Cisco CCNA
+STU016,Kiran Rao,3,0,None,3,0,1,NPTEL
+STU017,Anusha Rao,1,2,Entrepreneurship Cell; NSS,1,0,2,NPTEL; AWS Cloud Practitioner
+STU018,Aarav Nair,7,1,Cultural Club,3,1,3,Coursera ML; Oracle Java; NPTEL
+STU019,Arjun Babu,4,1,Entrepreneurship Cell,1,0,2,Coursera ML; Microsoft Azure Fundamentals
+STU020,Bhavana Varma,8,2,IEEE Student Chapter; NSS,1,1,2,Coursera ML; Infosys Springboard
+STU021,Karthik Prasad,5,3,Cultural Club; Sports Club; Coding Club,2,0,4,NPTEL; Cisco CCNA; Oracle Java; Google Data Analytics
+STU022,Anusha Yadav,9,1,Sports Club,0,0,1,Coursera ML
+STU023,Bhavana Patel,6,0,None,2,0,1,Microsoft Azure Fundamentals
+STU024,Naveen Varma,5,0,None,1,0,0,None
+STU025,Rohan Naidu,2,0,None,1,0,1,Coursera ML
+STU026,Harini Patel,0,2,Photography Club; Cultural Club,2,0,2,Infosys Springboard; Oracle Java
+STU027,Rahul Kumar,6,0,None,4,1,1,Cisco CCNA
+STU028,Teja Yadav,5,0,None,1,0,1,Coursera ML
+STU029,Priya Nair,8,2,Entrepreneurship Cell; NSS,0,0,3,Google Data Analytics; AWS Cloud Practitioner; Cisco CCNA
+STU030,Pooja Chowdary,7,1,IEEE Student Chapter,2,0,1,Coursera ML
+STU031,Charan Reddy,5,2,Coding Club; IEEE Student Chapter,2,1,0,None
+STU032,Vivaan Goud,8,3,NSS; Entrepreneurship Cell; Robotics Club,2,0,1,Coursera ML
+STU033,Vamsi Goud,5,2,Cultural Club; Coding Club,2,0,1,Cisco CCNA
+STU034,Rahul Kumar,7,0,None,2,0,2,Google Data Analytics; Oracle Java
+STU035,Sai Babu,8,1,Cultural Club,2,2,3,Infosys Springboard; Cisco CCNA; NPTEL
+STU036,Keerthi Naidu,4,0,None,1,1,1,Infosys Springboard
+STU037,Kiran Reddy,1,0,None,2,0,0,None
+STU038,Lakshmi Goud,1,1,IEEE Student Chapter,0,0,1,Microsoft Azure Fundamentals
+STU039,Harini Singh,2,0,None,2,0,0,None
+STU040,Varun Gupta,4,0,None,2,1,2,AWS Cloud Practitioner; Infosys Springboard
+STU041,Aditya Chowdary,0,0,None,1,0,0,None
+STU042,Kiran Naidu,5,1,Cultural Club,2,0,1,Infosys Springboard
+STU043,Bhavana Patel,5,2,NSS; Robotics Club,0,0,0,None
+STU044,Lakshmi Gupta,3,1,Photography Club,1,1,3,Infosys Springboard; Microsoft Azure Fundamentals; Coursera ML
+STU045,Vivaan Varma,4,0,None,0,0,0,None
+STU046,Sneha Sharma,9,2,NSS; Coding Club,2,0,2,Google Data Analytics; Cisco CCNA
+STU047,Teja Prasad,0,2,Sports Club; NSS,3,1,3,NPTEL; Cisco CCNA; Coursera ML
+STU048,Deepika Kumar,6,3,Sports Club; Coding Club; Photography Club,2,0,2,Oracle Java; Cisco CCNA
+STU049,Naveen Rao,4,1,Entrepreneurship Cell,2,1,1,Microsoft Azure Fundamentals
+STU050,Vamsi Raju,8,0,None,1,0,2,Oracle Java; Infosys Springboard
+STU051,Teja Rao,6,1,Cultural Club,2,1,4,NPTEL; Coursera ML; Oracle Java; Cisco CCNA
+STU052,Manoj Raju,7,1,NSS,2,0,1,Infosys Springboard
+STU053,Rahul Naidu,0,0,None,2,0,1,Microsoft Azure Fundamentals
+STU054,Aditya Raju,6,0,None,0,0,0,None
+STU055,Harini Singh,3,1,Cultural Club,3,1,1,Cisco CCNA
+STU056,Harini Sharma,5,0,None,1,0,2,Infosys Springboard; AWS Cloud Practitioner
+STU057,Sai Sharma,6,2,Sports Club; Cultural Club,5,0,1,NPTEL
+STU058,Keerthi Gupta,5,1,Sports Club,1,0,2,NPTEL; Infosys Springboard
+STU059,Bhavana Raju,4,1,Entrepreneurship Cell,0,0,0,None
+STU060,Aditya Prasad,4,2,Robotics Club; Sports Club,4,0,1,Coursera ML
+STU061,Pooja Babu,3,0,None,1,1,3,Cisco CCNA; Coursera ML; Infosys Springboard
+STU062,Teja Goud,3,0,None,0,0,0,None
+STU063,Karthik Naidu,5,0,None,2,0,0,None
+STU064,Arjun Reddy,3,0,None,2,1,1,Infosys Springboard
+STU065,Sravani Sharma,1,0,None,0,0,0,None
+STU066,Sravani Nair,2,0,None,1,0,0,None
+STU067,Divya Raju,0,0,None,3,1,2,Microsoft Azure Fundamentals; AWS Cloud Practitioner
+STU068,Pooja Nair,3,0,None,0,0,1,Infosys Springboard
+STU069,Sai Goud,3,0,None,2,0,1,Coursera ML
+STU070,Manoj Singh,3,2,Sports Club; IEEE Student Chapter,1,1,1,Oracle Java
+STU071,Naveen Nair,7,1,NSS,2,0,1,Infosys Springboard
+STU072,Charan Gupta,3,0,None,0,0,0,None
+STU073,Sneha Chowdary,7,1,Sports Club,0,0,2,Infosys Springboard; Google Data Analytics
+STU074,Ananya Varma,1,2,NSS; Coding Club,1,0,1,Coursera ML
+STU075,Lakshmi Kumar,8,2,Sports Club; Coding Club,1,0,1,Infosys Springboard
+STU076,Divya Prasad,4,1,IEEE Student Chapter,1,0,0,None
+STU077,Keerthi Singh,3,1,Robotics Club,2,0,1,AWS Cloud Practitioner
+STU078,Vivaan Prasad,6,1,Coding Club,2,0,1,AWS Cloud Practitioner
+STU079,Charan Sharma,4,2,Sports Club; Entrepreneurship Cell,2,0,2,Google Data Analytics; AWS Cloud Practitioner
+STU080,Manoj Raju,4,0,None,0,0,2,Cisco CCNA; NPTEL
+STU081,Diya Singh,5,0,None,4,1,0,None
+STU082,Sravani Raju,2,1,Sports Club,0,0,2,Google Data Analytics; AWS Cloud Practitioner
+STU083,Rahul Chowdary,2,1,Sports Club,1,0,3,Cisco CCNA; Coursera ML; AWS Cloud Practitioner
+STU084,Teja Gupta,5,2,Entrepreneurship Cell; Coding Club,2,0,3,Infosys Springboard; Oracle Java; AWS Cloud Practitioner
+STU085,Divya Goud,2,1,IEEE Student Chapter,0,0,2,Microsoft Azure Fundamentals; NPTEL
+STU086,Arjun Gupta,5,2,Photography Club; Robotics Club,0,0,3,Microsoft Azure Fundamentals; NPTEL; Coursera ML
+STU087,Sravani Prasad,6,0,None,1,0,1,NPTEL
+STU088,Pooja Reddy,1,1,Photography Club,2,0,2,Microsoft Azure Fundamentals; NPTEL
+STU089,Diya Nair,5,2,Entrepreneurship Cell; Photography Club,0,0,3,NPTEL; AWS Cloud Practitioner; Infosys Springboard
+STU090,Sneha Gupta,0,1,IEEE Student Chapter,2,1,1,Infosys Springboard
+STU091,Rohan Gupta,5,1,Robotics Club,1,0,2,AWS Cloud Practitioner; Cisco CCNA
+STU092,Manoj Prasad,2,0,None,1,0,0,None
+STU093,Aarav Rao,9,2,NSS; Sports Club,3,1,1,Cisco CCNA
+STU094,Diya Raju,3,0,None,2,0,1,Microsoft Azure Fundamentals
+STU095,Meghana Patel,5,1,Sports Club,2,0,1,Microsoft Azure Fundamentals
+STU096,Deepika Varma,4,1,NSS,3,1,2,Cisco CCNA; NPTEL
+STU097,Varun Raju,3,2,Photography Club; Robotics Club,0,0,1,Cisco CCNA
+STU098,Arjun Babu,3,1,Coding Club,2,0,0,None
+STU099,Kiran Rao,7,1,NSS,2,0,3,Infosys Springboard; Oracle Java; AWS Cloud Practitioner
+STU100,Kiran Patel,5,0,None,1,0,1,Cisco CCNA
+STU101,Priya Gupta,4,1,Cultural Club,0,0,2,Google Data Analytics; Microsoft Azure Fundamentals
+STU102,Vivaan Singh,1,1,Photography Club,1,0,0,None
+STU103,Sneha Prasad,3,1,IEEE Student Chapter,3,0,2,Google Data Analytics; NPTEL
+STU104,Sneha Sharma,6,1,Photography Club,0,0,2,Microsoft Azure Fundamentals; Infosys Springboard
+STU105,Pooja Goud,2,2,Entrepreneurship Cell; Coding Club,3,0,2,Coursera ML; Infosys Springboard
+STU106,Naveen Singh,4,1,Entrepreneurship Cell,1,0,3,Cisco CCNA; NPTEL; Microsoft Azure Fundamentals
+STU107,Teja Reddy,7,1,Sports Club,1,0,1,Coursera ML
+STU108,Ananya Babu,3,3,Coding Club; Cultural Club; Photography Club,1,0,0,None
+STU109,Ananya Varma,7,1,Robotics Club,2,0,1,Cisco CCNA
+STU110,Manoj Patel,6,0,None,2,1,1,Oracle Java
+STU111,Varun Sharma,5,0,None,0,0,0,None
+STU112,Rahul Chowdary,6,2,Robotics Club; Sports Club,3,2,4,Coursera ML; AWS Cloud Practitioner; Microsoft Azure Fundamentals; NPTEL
+STU113,Varun Nair,4,0,None,1,0,1,Infosys Springboard
+STU114,Rohan Singh,5,1,IEEE Student Chapter,0,0,0,None
+STU115,Ananya Varma,4,0,None,1,0,1,Oracle Java
+STU116,Arjun Gupta,2,1,Sports Club,1,0,0,None
+STU117,Rohan Raju,5,1,NSS,1,0,2,Microsoft Azure Fundamentals; Coursera ML
+STU118,Pooja Patel,3,0,None,1,0,0,None
+STU119,Rohan Nair,6,0,None,1,0,1,AWS Cloud Practitioner
+STU120,Kiran Reddy,6,1,NSS,2,0,0,None
+STU121,Naveen Babu,3,2,Coding Club; IEEE Student Chapter,0,0,0,None
+STU122,Aarav Singh,5,1,Photography Club,2,0,2,Microsoft Azure Fundamentals; Cisco CCNA
+STU123,Rahul Patel,4,0,None,0,0,0,None
+STU124,Vamsi Nair,4,1,IEEE Student Chapter,1,1,1,Cisco CCNA
+STU125,Diya Raju,5,1,Robotics Club,1,0,1,Oracle Java
+STU126,Arjun Raju,3,0,None,3,1,2,Coursera ML; Infosys Springboard
+STU127,Vamsi Patel,5,2,NSS; Coding Club,1,1,2,AWS Cloud Practitioner; Microsoft Azure Fundamentals
+STU128,Vamsi Singh,3,1,Cultural Club,2,1,2,Cisco CCNA; NPTEL
+STU129,Harini Chowdary,0,0,None,1,0,0,None
+STU130,Divya Varma,4,1,Robotics Club,2,0,2,Microsoft Azure Fundamentals; Google Data Analytics
+STU131,Priya Rao,8,2,IEEE Student Chapter; Cultural Club,4,0,2,Google Data Analytics; Coursera ML
+STU132,Kiran Singh,4,0,None,0,0,2,Infosys Springboard; AWS Cloud Practitioner
+STU133,Harini Chowdary,5,1,Cultural Club,1,0,2,Microsoft Azure Fundamentals; NPTEL
+STU134,Harini Kumar,6,0,None,0,0,0,None
+STU135,Aarav Patel,4,2,IEEE Student Chapter; Sports Club,3,0,0,None
+STU136,Naveen Goud,1,1,IEEE Student Chapter,1,0,1,Infosys Springboard
+STU137,Priya Varma,3,2,IEEE Student Chapter; Entrepreneurship Cell,1,1,2,Google Data Analytics; Infosys Springboard
+STU138,Kiran Kumar,2,0,None,0,0,1,NPTEL
+STU139,Aditya Chowdary,6,1,Photography Club,2,1,0,None
+STU140,Karthik Prasad,0,2,Cultural Club; Coding Club,3,0,0,None
+STU141,Manoj Patel,6,0,None,4,1,0,None
+STU142,Charan Reddy,2,2,Cultural Club; IEEE Student Chapter,2,1,1,Infosys Springboard
+STU143,Priya Raju,5,2,NSS; Cultural Club,1,0,2,Oracle Java; Coursera ML
+STU144,Charan Goud,5,2,Sports Club; Coding Club,2,0,1,Infosys Springboard
+STU145,Rahul Prasad,0,0,None,1,0,0,None
+STU146,Meghana Kumar,4,0,None,2,0,1,Coursera ML
+STU147,Pooja Babu,4,1,NSS,2,1,3,Oracle Java; Google Data Analytics; Coursera ML
+STU148,Harini Kumar,8,0,None,3,0,0,None
+STU149,Rohan Singh,3,2,Entrepreneurship Cell; Sports Club,1,0,1,NPTEL
+STU150,Deepika Varma,3,0,None,0,0,1,Coursera ML
+STU151,Charan Gupta,1,0,None,1,0,2,Infosys Springboard; AWS Cloud Practitioner
+STU152,Sai Yadav,8,3,NSS; Photography Club; Robotics Club,1,1,2,Oracle Java; Microsoft Azure Fundamentals
+STU153,Keerthi Naidu,5,0,None,3,0,1,Infosys Springboard
+STU154,Sravani Varma,5,3,Coding Club; IEEE Student Chapter; Sports Club,2,0,2,AWS Cloud Practitioner; NPTEL
+STU155,Swathi Rao,2,0,None,2,0,2,Cisco CCNA; Infosys Springboard
+STU156,Deepika Goud,3,0,None,3,0,2,NPTEL; Microsoft Azure Fundamentals
+STU157,Karthik Gupta,6,0,None,0,0,2,Infosys Springboard; AWS Cloud Practitioner
+STU158,Priya Patel,6,2,NSS; Photography Club,3,0,2,NPTEL; Google Data Analytics
+STU159,Vamsi Chowdary,2,0,None,0,0,0,None
+STU160,Aditya Kumar,6,1,NSS,2,0,2,Microsoft Azure Fundamentals; AWS Cloud Practitioner
+STU161,Karthik Rao,4,0,None,2,0,0,None
+STU162,Sravani Singh,1,0,None,0,0,0,None
+STU163,Meghana Naidu,1,1,Coding Club,2,0,1,Oracle Java
+STU164,Vivaan Raju,4,0,None,0,0,0,None
+STU165,Pooja Nair,4,1,Robotics Club,3,2,3,NPTEL; AWS Cloud Practitioner; Coursera ML
+STU166,Aarav Rao,5,1,Robotics Club,2,0,1,AWS Cloud Practitioner
+STU167,Bhavana Babu,8,0,None,1,0,1,Microsoft Azure Fundamentals
+STU168,Swathi Reddy,5,1,Robotics Club,2,1,0,None
+STU169,Kiran Naidu,6,1,NSS,1,0,2,Coursera ML; Google Data Analytics
+STU170,Harini Singh,5,1,Photography Club,3,0,0,None
+STU171,Keerthi Reddy,3,0,None,2,1,1,NPTEL
+STU172,Lakshmi Babu,4,1,Robotics Club,1,0,1,Microsoft Azure Fundamentals
+STU173,Bhavana Raju,2,2,Coding Club; IEEE Student Chapter,0,0,1,Google Data Analytics
+STU174,Divya Yadav,5,0,None,2,0,0,None
+STU175,Varun Yadav,7,0,None,2,0,2,Infosys Springboard; Cisco CCNA
+STU176,Teja Naidu,6,0,None,2,1,1,AWS Cloud Practitioner
+STU177,Deepika Babu,2,1,Photography Club,2,0,2,Cisco CCNA; Coursera ML
+STU178,Vivaan Naidu,3,1,Coding Club,0,0,2,Google Data Analytics; Cisco CCNA
+STU179,Deepika Nair,6,0,None,1,0,1,Oracle Java
+STU180,Bhavana Sharma,4,1,IEEE Student Chapter,0,0,0,None
+STU181,Harini Rao,0,0,None,0,0,0,None
+STU182,Bhavana Nair,1,0,None,3,0,1,Microsoft Azure Fundamentals
+STU183,Rohan Babu,5,3,Robotics Club; IEEE Student Chapter; Photography Club,3,0,2,Cisco CCNA; Google Data Analytics
+STU184,Manoj Raju,2,1,Robotics Club,0,0,3,Infosys Springboard; NPTEL; Cisco CCNA
+STU185,Aditya Nair,2,2,NSS; Sports Club,3,1,1,NPTEL
+STU186,Bhavana Chowdary,4,0,None,0,0,2,Cisco CCNA; Infosys Springboard
+STU187,Sravani Gupta,6,3,NSS; Photography Club; Robotics Club,1,0,1,AWS Cloud Practitioner
+STU188,Sneha Gupta,4,0,None,0,0,2,Google Data Analytics; Infosys Springboard
+STU189,Sneha Gupta,5,0,None,3,0,1,Coursera ML
+STU190,Diya Babu,5,0,None,0,0,1,NPTEL
+STU191,Harini Rao,2,1,NSS,0,0,0,None
+STU192,Aditya Naidu,4,1,IEEE Student Chapter,0,0,2,Coursera ML; Oracle Java
+STU193,Sai Kumar,0,1,IEEE Student Chapter,1,0,2,AWS Cloud Practitioner; Coursera ML
+STU194,Manoj Chowdary,5,0,None,2,1,1,Cisco CCNA
+STU195,Divya Nair,9,1,Photography Club,2,0,2,Microsoft Azure Fundamentals; Cisco CCNA
+STU196,Swathi Reddy,7,1,Cultural Club,3,0,3,Microsoft Azure Fundamentals; Cisco CCNA; AWS Cloud Practitioner
+STU197,Rahul Goud,3,2,Entrepreneurship Cell; NSS,3,0,1,Microsoft Azure Fundamentals
+STU198,Teja Chowdary,5,2,Sports Club; NSS,1,0,0,None
+STU199,Varun Yadav,5,0,None,1,0,1,AWS Cloud Practitioner
+STU200,Varun Kumar,3,0,None,3,1,0,None
+STU201,Bhavana Raju,4,0,None,2,2,0,None
+STU202,Bhavana Gupta,6,0,None,1,1,1,Microsoft Azure Fundamentals
+STU203,Teja Naidu,3,1,Cultural Club,1,0,1,AWS Cloud Practitioner
+STU204,Sai Raju,2,0,None,2,0,0,None
+STU205,Ananya Sharma,0,0,None,0,0,2,AWS Cloud Practitioner; Google Data Analytics
+STU206,Aarav Nair,0,1,IEEE Student Chapter,1,0,1,Google Data Analytics
+STU207,Divya Nair,4,0,None,2,0,3,Coursera ML; Microsoft Azure Fundamentals; Infosys Springboard
+STU208,Sai Goud,2,1,IEEE Student Chapter,1,0,2,AWS Cloud Practitioner; Infosys Springboard
+STU209,Kiran Gupta,1,0,None,3,0,1,AWS Cloud Practitioner
+STU210,Karthik Patel,1,1,Cultural Club,3,0,1,Coursera ML
+STU211,Sai Gupta,4,2,NSS; Cultural Club,1,0,2,Oracle Java; Google Data Analytics
+STU212,Ananya Babu,3,2,Photography Club; Sports Club,4,1,1,Microsoft Azure Fundamentals
+STU213,Rohan Kumar,5,2,Robotics Club; Entrepreneurship Cell,3,0,2,Cisco CCNA; Google Data Analytics
+STU214,Harini Prasad,6,1,IEEE Student Chapter,1,0,1,Cisco CCNA
+STU215,Aarav Chowdary,2,0,None,1,0,0,None
+STU216,Meghana Gupta,5,2,IEEE Student Chapter; Photography Club,1,0,1,NPTEL
+STU217,Swathi Gupta,4,1,Coding Club,0,0,3,Oracle Java; Infosys Springboard; Coursera ML
+STU218,Diya Sharma,4,1,Entrepreneurship Cell,1,0,1,NPTEL
+STU219,Bhavana Singh,3,1,Robotics Club,2,0,0,None
+STU220,Ananya Kumar,7,1,Cultural Club,0,0,1,AWS Cloud Practitioner
+STU221,Priya Gupta,7,1,Cultural Club,1,1,1,AWS Cloud Practitioner
+STU222,Varun Prasad,7,0,None,1,0,1,Oracle Java
+STU223,Charan Goud,5,1,Cultural Club,3,1,1,AWS Cloud Practitioner
+STU224,Swathi Babu,3,2,IEEE Student Chapter; NSS,0,0,0,None
+STU225,Vamsi Sharma,4,0,None,1,0,1,AWS Cloud Practitioner
+STU226,Pooja Sharma,4,2,Cultural Club; Entrepreneurship Cell,2,0,0,None
+STU227,Karthik Singh,5,0,None,3,1,4,Cisco CCNA; Microsoft Azure Fundamentals; Infosys Springboard; Coursera ML
+STU228,Deepika Nair,9,1,Photography Club,2,0,2,Coursera ML; Cisco CCNA
+STU229,Rohan Babu,0,0,None,2,0,0,None
+STU230,Rahul Chowdary,5,0,None,1,0,0,None
+STU231,Teja Patel,3,0,None,2,0,1,NPTEL
+STU232,Naveen Babu,5,1,Cultural Club,1,0,4,Infosys Springboard; Google Data Analytics; Oracle Java; NPTEL
+STU233,Teja Raju,2,1,Entrepreneurship Cell,2,0,3,NPTEL; Coursera ML; Microsoft Azure Fundamentals
+STU234,Vamsi Prasad,3,1,Sports Club,1,0,1,AWS Cloud Practitioner
+STU235,Swathi Goud,2,0,None,2,0,1,Coursera ML
+STU236,Rohan Varma,1,1,NSS,1,0,2,Oracle Java; Google Data Analytics
+STU237,Naveen Gupta,3,0,None,2,0,0,None
+STU238,Aarav Nair,0,1,Photography Club,0,0,0,None
+STU239,Aditya Yadav,6,2,Photography Club; Cultural Club,1,1,1,Infosys Springboard
+STU240,Pooja Gupta,3,0,None,2,1,1,Google Data Analytics
+STU241,Sravani Varma,3,1,NSS,2,2,1,Coursera ML
+STU242,Lakshmi Goud,5,0,None,4,2,0,None
+STU243,Sneha Goud,7,1,NSS,0,0,0,None
+STU244,Teja Yadav,2,0,None,0,0,1,Microsoft Azure Fundamentals
+STU245,Aarav Chowdary,6,1,Coding Club,4,2,1,Oracle Java
+STU246,Varun Naidu,5,0,None,0,0,0,None
+STU247,Deepika Prasad,5,1,Coding Club,3,0,0,None
+STU248,Vamsi Kumar,5,1,Sports Club,0,0,2,Cisco CCNA; AWS Cloud Practitioner
+STU249,Meghana Raju,0,1,Coding Club,0,0,1,NPTEL
+STU250,Lakshmi Reddy,8,3,Robotics Club; Sports Club; Cultural Club,2,1,2,Cisco CCNA; Infosys Springboard

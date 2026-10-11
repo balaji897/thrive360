@@ -1,0 +1,51 @@
+Faculty_ID,Faculty_Name,Subject,Qualification,Designation
+FAC01,Venkat Reddy,Maths,M.Sc Mathematics,Assistant Professor
+FAC02,Dr. Ravi Teja,Maths,"M.Sc Mathematics, Ph.D",Associate Professor
+FAC03,Padmaja Devi,Maths,M.Sc Mathematics,Assistant Professor
+FAC04,Radhika Menon,Maths,M.Sc Mathematics,Assistant Professor
+FAC05,Dr. Harish Reddy,Maths,"M.Sc Mathematics, Ph.D",Assistant Professor
+FAC06,Vinod Naidu,Maths,M.Sc Mathematics,Assistant Professor
+FAC07,Dr. Satish Chowdary,Maths,"M.Sc Mathematics, Ph.D",Associate Professor
+FAC08,Dr. Satish Yadav,Maths,"M.Sc Mathematics, Ph.D",Associate Professor
+FAC09,Dr. Anitha Sharma,Maths,"M.Sc Mathematics, Ph.D",Associate Professor
+FAC10,Nagesh Chowdary,Maths,M.Sc Mathematics,Assistant Professor
+FAC11,Dr. Srinivas Rao,Physics,"M.Sc Physics, Ph.D",Associate Professor
+FAC12,Dr. Neelima Singh,Physics,"M.Sc Physics, Ph.D",Associate Professor
+FAC13,Dr. Raghu Ram,Physics,"M.Sc Physics, Ph.D",Assistant Professor
+FAC14,Dr. Bhavani Babu,Physics,"M.Sc Physics, Ph.D",Assistant Professor
+FAC15,Dr. Srinivas Prasad,Physics,"M.Sc Physics, Ph.D",Assistant Professor
+FAC16,Raghu Nair,Physics,M.Sc Physics,Assistant Professor
+FAC17,Tulasi Reddy,Physics,M.Sc Physics,Assistant Professor
+FAC18,Dr. Gopal Patel,Physics,"M.Sc Physics, Ph.D",Associate Professor
+FAC19,Sandhya Sharma,Physics,M.Sc Physics,Assistant Professor
+FAC20,Dr. Mahesh Shetty,Physics,"M.Sc Physics, Ph.D",Associate Professor
+FAC21,Dr. Bhavani Shankar,Programming,"M.Tech CSE, Ph.D",Professor
+FAC22,Dr. Suresh Kumar,Programming,"M.Tech CSE, Ph.D",Associate Professor
+FAC23,Lakshmi Prasad,Programming,MCA,Assistant Professor
+FAC24,Vijaya Reddy,Programming,M.Tech CSE,Assistant Professor
+FAC25,Ashok Reddy,Programming,MCA,Assistant Professor
+FAC26,Dr. Pallavi Iyer,Programming,"M.Tech CSE, Ph.D",Assistant Professor
+FAC27,Dr. Venkat Chowdary,Programming,"M.Tech CSE, Ph.D",Associate Professor
+FAC28,Dr. Nagesh Shetty,Programming,"MCA, Ph.D",Associate Professor
+FAC29,Dr. Satish Rao,Programming,"MCA, Ph.D",Professor
+FAC30,Archana Menon,Programming,MCA,Assistant Professor
+FAC31,Dr. Kiran Kumar,DBMS,"M.Tech IT, Ph.D",Assistant Professor
+FAC32,Dr. Sunitha Varma,DBMS,"M.Tech CSE, Ph.D",Associate Professor
+FAC33,Anitha Rao,DBMS,M.Tech CSE,Assistant Professor
+FAC34,Raghu Shetty,DBMS,M.Tech CSE,Assistant Professor
+FAC35,Tulasi Chowdary,DBMS,M.Tech CSE,Assistant Professor
+FAC36,Sunitha Menon,DBMS,MCA,Assistant Professor
+FAC37,Rekha Gupta,DBMS,MCA,Assistant Professor
+FAC38,Dr. Srinivas Raju,DBMS,"MCA, Ph.D",Professor
+FAC39,Dr. Rekha Murthy,DBMS,"M.Tech CSE, Ph.D",Associate Professor
+FAC40,Rajesh Reddy,DBMS,MCA,Assistant Professor
+FAC41,Dr. Madhavi Latha,OS,"M.Tech CSE, Ph.D",Professor
+FAC42,Dr. Mahesh Naidu,OS,"M.Tech CSE, Ph.D",Associate Professor
+FAC43,Prasad Goud,OS,M.Tech CSE,Assistant Professor
+FAC44,Dr. Balaji Prasad,OS,"M.Tech CSE, Ph.D",Associate Professor
+FAC45,Dr. Jyothi Singh,OS,"M.Tech CSE, Ph.D",Professor
+FAC46,Dr. Suresh Chowdary,OS,"M.Tech CSE, Ph.D",Assistant Professor
+FAC47,Pallavi Raju,OS,M.Tech CSE,Assistant Professor
+FAC48,Rajesh Naidu,OS,M.Tech CSE,Assistant Professor
+FAC49,Padmaja Chowdary,OS,M.E Computer Science,Assistant Professor
+FAC50,Rekha Kumar,OS,M.Tech CSE,Assistant Professor

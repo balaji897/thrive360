@@ -1,0 +1,309 @@
+{
+  "students": {
+    "filename": "students_250_cleaned.csv",
+    "rows": 250,
+    "columns": [
+      "Student_ID",
+      "Name",
+      "Department",
+      "Year",
+      "CGPA",
+      "Maths_Marks",
+      "Physics_Marks",
+      "Programming_Marks",
+      "DBMS_Marks",
+      "OS_Marks",
+      "Backlogs",
+      "Maths_Attendance_%",
+      "Physics_Attendance_%",
+      "Programming_Attendance_%",
+      "DBMS_Attendance_%",
+      "OS_Attendance_%",
+      "Overall_Attendance_%"
+    ],
+    "col_count": 17,
+    "unique_students": 250,
+    "duplicates": 0,
+    "missing_values": {},
+    "all_null_counts": {
+      "Student_ID": 0,
+      "Name": 0,
+      "Department": 0,
+      "Year": 0,
+      "CGPA": 0,
+      "Maths_Marks": 0,
+      "Physics_Marks": 0,
+      "Programming_Marks": 0,
+      "DBMS_Marks": 0,
+      "OS_Marks": 0,
+      "Backlogs": 0,
+      "Maths_Attendance_%": 0,
+      "Physics_Attendance_%": 0,
+      "Programming_Attendance_%": 0,
+      "DBMS_Attendance_%": 0,
+      "OS_Attendance_%": 0,
+      "Overall_Attendance_%": 0
+    },
+    "dtypes": {
+      "Student_ID": "str",
+      "Name": "str",
+      "Department": "str",
+      "Year": "int64",
+      "CGPA": "float64",
+      "Maths_Marks": "int64",
+      "Physics_Marks": "int64",
+      "Programming_Marks": "int64",
+      "DBMS_Marks": "int64",
+      "OS_Marks": "int64",
+      "Backlogs": "int64",
+      "Maths_Attendance_%": "int64",
+      "Physics_Attendance_%": "int64",
+      "Programming_Attendance_%": "int64",
+      "DBMS_Attendance_%": "int64",
+      "OS_Attendance_%": "int64",
+      "Overall_Attendance_%": "float64"
+    }
+  },
+  "lms": {
+    "filename": "students_lms_250.csv",
+    "rows": 250,
+    "columns": [
+      "Student_ID",
+      "Name",
+      "LMS_Login_Frequency"
+    ],
+    "col_count": 3,
+    "unique_students": 250,
+    "duplicates": 0,
+    "missing_values": {},
+    "all_null_counts": {
+      "Student_ID": 0,
+      "Name": 0,
+      "LMS_Login_Frequency": 0
+    },
+    "dtypes": {
+      "Student_ID": "str",
+      "Name": "str",
+      "LMS_Login_Frequency": "int64"
+    }
+  },
+  "activities": {
+    "filename": "students_activities_250.csv",
+    "rows": 250,
+    "columns": [
+      "Student_ID",
+      "Name",
+      "Events_Participated",
+      "Clubs_Joined_Count",
+      "Club_Names",
+      "Hackathons_Participated",
+      "Hackathons_Won",
+      "Certifications_Count",
+      "Certification_Names"
+    ],
+    "col_count": 9,
+    "unique_students": 250,
+    "duplicates": 0,
+    "missing_values": {
+      "Club_Names": 99,
+      "Certification_Names": 64
+    },
+    "all_null_counts": {
+      "Student_ID": 0,
+      "Name": 0,
+      "Events_Participated": 0,
+      "Clubs_Joined_Count": 0,
+      "Club_Names": 99,
+      "Hackathons_Participated": 0,
+      "Hackathons_Won": 0,
+      "Certifications_Count": 0,
+      "Certification_Names": 64
+    },
+    "dtypes": {
+      "Student_ID": "str",
+      "Name": "str",
+      "Events_Participated": "int64",
+      "Clubs_Joined_Count": "int64",
+      "Club_Names": "str",
+      "Hackathons_Participated": "int64",
+      "Hackathons_Won": "int64",
+      "Certifications_Count": "int64",
+      "Certification_Names": "str"
+    }
+  },
+  "placement": {
+    "filename": "students_placement_readiness_250.csv",
+    "rows": 250,
+    "columns": [
+      "Student_ID",
+      "Name",
+      "Aptitude_Score",
+      "Coding_Score",
+      "Mock_Interviews_Attended",
+      "Mock_Interview_Avg_Score"
+    ],
+    "col_count": 6,
+    "unique_students": 250,
+    "duplicates": 0,
+    "missing_values": {},
+    "all_null_counts": {
+      "Student_ID": 0,
+      "Name": 0,
+      "Aptitude_Score": 0,
+      "Coding_Score": 0,
+      "Mock_Interviews_Attended": 0,
+      "Mock_Interview_Avg_Score": 0
+    },
+    "dtypes": {
+      "Student_ID": "str",
+      "Name": "str",
+      "Aptitude_Score": "int64",
+      "Coding_Score": "int64",
+      "Mock_Interviews_Attended": "int64",
+      "Mock_Interview_Avg_Score": "int64"
+    }
+  },
+  "skills": {
+    "filename": "students_skill_assessments_250.csv",
+    "rows": 250,
+    "columns": [
+      "Student_ID",
+      "Name",
+      "Technical_Assessment_Score",
+      "Technical_Assessments_Attempted",
+      "Communication_Skills",
+      "Teamwork",
+      "Leadership",
+      "Problem_Solving",
+      "Time_Management",
+      "Soft_Skills_Avg"
+    ],
+    "col_count": 10,
+    "unique_students": 250,
+    "duplicates": 0,
+    "missing_values": {},
+    "all_null_counts": {
+      "Student_ID": 0,
+      "Name": 0,
+      "Technical_Assessment_Score": 0,
+      "Technical_Assessments_Attempted": 0,
+      "Communication_Skills": 0,
+      "Teamwork": 0,
+      "Leadership": 0,
+      "Problem_Solving": 0,
+      "Time_Management": 0,
+      "Soft_Skills_Avg": 0
+    },
+    "dtypes": {
+      "Student_ID": "str",
+      "Name": "str",
+      "Technical_Assessment_Score": "int64",
+      "Technical_Assessments_Attempted": "int64",
+      "Communication_Skills": "int64",
+      "Teamwork": "int64",
+      "Leadership": "int64",
+      "Problem_Solving": "int64",
+      "Time_Management": "int64",
+      "Soft_Skills_Avg": "float64"
+    }
+  },
+  "feedback": {
+    "filename": "students_feedback_250.csv",
+    "rows": 250,
+    "columns": [
+      "Student_ID",
+      "Name",
+      "Overall_Satisfaction",
+      "Teaching_Quality_Satisfaction",
+      "Infrastructure_Satisfaction",
+      "Campus_Life_Satisfaction",
+      "Placement_Support_Satisfaction",
+      "Faculty_Subject_Knowledge",
+      "Faculty_Communication",
+      "Faculty_Punctuality",
+      "Faculty_Doubt_Clearing",
+      "Faculty_Feedback_Avg",
+      "Would_Recommend_College"
+    ],
+    "col_count": 13,
+    "unique_students": 250,
+    "duplicates": 0,
+    "missing_values": {},
+    "all_null_counts": {
+      "Student_ID": 0,
+      "Name": 0,
+      "Overall_Satisfaction": 0,
+      "Teaching_Quality_Satisfaction": 0,
+      "Infrastructure_Satisfaction": 0,
+      "Campus_Life_Satisfaction": 0,
+      "Placement_Support_Satisfaction": 0,
+      "Faculty_Subject_Knowledge": 0,
+      "Faculty_Communication": 0,
+      "Faculty_Punctuality": 0,
+      "Faculty_Doubt_Clearing": 0,
+      "Faculty_Feedback_Avg": 0,
+      "Would_Recommend_College": 0
+    },
+    "dtypes": {
+      "Student_ID": "str",
+      "Name": "str",
+      "Overall_Satisfaction": "float64",
+      "Teaching_Quality_Satisfaction": "float64",
+      "Infrastructure_Satisfaction": "float64",
+      "Campus_Life_Satisfaction": "float64",
+      "Placement_Support_Satisfaction": "float64",
+      "Faculty_Subject_Knowledge": "float64",
+      "Faculty_Communication": "float64",
+      "Faculty_Punctuality": "float64",
+      "Faculty_Doubt_Clearing": "float64",
+      "Faculty_Feedback_Avg": "float64",
+      "Would_Recommend_College": "str"
+    }
+  },
+  "join_coverage": {
+    "lms": {
+      "matches_students_base": 250,
+      "missing_from_file": [],
+      "extra_in_file": []
+    },
+    "activities": {
+      "matches_students_base": 250,
+      "missing_from_file": [],
+      "extra_in_file": []
+    },
+    "placement": {
+      "matches_students_base": 250,
+      "missing_from_file": [],
+      "extra_in_file": []
+    },
+    "skills": {
+      "matches_students_base": 250,
+      "missing_from_file": [],
+      "extra_in_file": []
+    },
+    "feedback": {
+      "matches_students_base": 250,
+      "missing_from_file": [],
+      "extra_in_file": []
+    }
+  },
+  "integrated_count": 250,
+  "sample_keys": [
+    "student_id",
+    "name",
+    "department",
+    "year",
+    "academics",
+    "lms",
+    "activities",
+    "placement",
+    "skills",
+    "feedback",
+    "success_score",
+    "score_breakdown",
+    "academic_risk",
+    "placement_risk",
+    "missing_data_flags",
+    "primary_segment"
+  ]
+}

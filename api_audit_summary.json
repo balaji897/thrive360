@@ -1,0 +1,46 @@
+{
+  "/health": {
+    "status": 200,
+    "sample_check": "Students loaded: 250"
+  },
+  "/dashboard/summary": {
+    "status": 200,
+    "sample_check": "Total: 250, Avg Score: 70.3"
+  },
+  "/students?page=1&page_size=5": {
+    "status": 200,
+    "sample_check": "Total: 250, Page count: 5"
+  },
+  "/students/STU001": {
+    "status": 200,
+    "sample_check": "Name: Karthik Babu, CGPA: 8.15, Score: 80.1"
+  },
+  "/students/STU003": {
+    "status": 200,
+    "sample_check": "OK"
+  },
+  "/analytics/segments": {
+    "status": 200,
+    "sample_check": "Segments count: 6, First: Critical Dual Risk"
+  },
+  "/analytics/risks": {
+    "status": 200,
+    "sample_check": "OK"
+  },
+  "/analytics/ml-model": {
+    "status": 200,
+    "sample_check": "OK"
+  },
+  "/data-quality": {
+    "status": 200,
+    "sample_check": "Files: 6, Match: 100.0%"
+  },
+  "/interventions": {
+    "status": 200,
+    "sample_check": "OK"
+  },
+  "/config/scoring-weights": {
+    "status": 200,
+    "sample_check": "OK"
+  }
+}

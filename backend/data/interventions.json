@@ -1,0 +1,85 @@
+[
+  {
+    "id": "INT-FCDFFFAC",
+    "student_id": "STU003",
+    "student_name": "Divya Goud",
+    "category": "Academic",
+    "title": "Remedial Tutoring & Backlog Clearance Plan",
+    "description": "Targeted academic recovery plan for Divya Goud (STU003). Focus on clearing backlogs and lifting attendance above 75%.",
+    "priority": "High",
+    "assigned_faculty": "Dr. Arvind Sharma (HOD IT)",
+    "status": "In Progress",
+    "due_date": "2026-10-24",
+    "action_items": [
+      "Enroll in daily 4 PM tutorial sessions",
+      "Mandatory weekly attendance log check",
+      "Submit previous semester backlog question bank solutions"
+    ],
+    "notes": "Student attended first counseling session; expressed eagerness to improve DBMS and Maths.",
+    "created_at": "2026-10-05T19:49:15.735696",
+    "updated_at": "2026-10-10T19:49:15.735696",
+    "outcome": ""
+  },
+  {
+    "id": "INT-6EB55889",
+    "student_id": "STU006",
+    "student_name": "Divya Yadav",
+    "category": "Placement",
+    "title": "DSA & Coding Accelerator Coaching",
+    "description": "Placement readiness intervention for Divya Yadav. Low coding assessment score requires hands-on problem solving sprint.",
+    "priority": "High",
+    "assigned_faculty": "Dr. K. Ramanathan (Training Head)",
+    "status": "Pending",
+    "due_date": "2026-10-31",
+    "action_items": [
+      "Complete 50 LeetCode Easy/Medium problems in 3 weeks",
+      "Attend 2 alumni mock technical interviews",
+      "Resume audit and technical project review"
+    ],
+    "notes": "Notice issued by placement cell.",
+    "created_at": "2026-10-08T19:49:15.735696",
+    "updated_at": "2026-10-10T19:49:15.735696",
+    "outcome": ""
+  },
+  {
+    "id": "INT-02376D8D",
+    "student_id": "STU009",
+    "student_name": "Sravani Babu",
+    "category": "Attendance",
+    "title": "Attendance Compliance & LMS Re-engagement",
+    "description": "Parent-faculty consultation regarding sub-75% attendance and low digital learning platform logins.",
+    "priority": "Medium",
+    "assigned_faculty": "Prof. Sneha Rao (CSE)",
+    "status": "In Progress",
+    "due_date": "2026-10-20",
+    "action_items": [
+      "Sign attendance undertaking letter",
+      "Set up daily morning check-in with class representative",
+      "Complete pending video modules on LMS"
+    ],
+    "notes": "Parent informed via official email. Positive student response.",
+    "created_at": "2026-10-03T19:49:15.735696",
+    "updated_at": "2026-10-10T19:49:15.735696",
+    "outcome": ""
+  },
+  {
+    "student_id": "STU003",
+    "student_name": "Divya Goud",
+    "category": "Academic",
+    "title": "Audit Verification Remedial Mentoring",
+    "description": "Test intervention to verify ACID JSON file persistence.",
+    "priority": "High",
+    "assigned_faculty": "Auditor Professor",
+    "status": "Pending",
+    "due_date": "2026-11-15",
+    "action_items": [
+      "Persistence check 1",
+      "Persistence check 2"
+    ],
+    "notes": "Initial audit entry",
+    "id": "INT-7537A9BD",
+    "created_at": "2026-10-10T20:48:01.974114",
+    "updated_at": "2026-10-10T20:48:01.974114",
+    "outcome": ""
+  }
+]
