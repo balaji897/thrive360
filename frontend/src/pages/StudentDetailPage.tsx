@@ -261,6 +261,24 @@ export const StudentDetailPage: React.FC<StudentDetailPageProps> = ({
         </div>
       </div>
 
+      {/* Soft Skills Competency Radar */}
+      <div className="bg-white rounded-xl border border-slate-200/90 p-5 shadow-2xs">
+        <h3 className="font-bold text-slate-900 text-sm mb-0.5">Soft Skills Competency Radar</h3>
+        <p className="text-xs text-slate-500 mb-3">5-dimensional behavioral evaluation (Composite Avg: {student.skills.soft_skills_avg.toFixed(1)}/100)</p>
+
+        <div className="h-60 flex items-center justify-center">
+          <ResponsiveContainer width="100%" height="100%">
+            <RadarChart data={softSkillsRadar}>
+              <PolarGrid stroke="#e2e8f0" />
+              <PolarAngleAxis dataKey="skill" stroke="#64748b" fontSize={10} />
+              <PolarRadiusAxis domain={[0, 100]} stroke="#cbd5e1" fontSize={9} />
+              <Radar name="Score" dataKey="score" stroke="#0891b2" fill="#0891b2" fillOpacity={0.3} />
+              <Tooltip contentStyle={tooltipStyle} />
+            </RadarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
       {/* 2. Top 4 Core KPI Hierarchy */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
         {/* Success Score */}
@@ -899,24 +917,6 @@ export const StudentDetailPage: React.FC<StudentDetailPageProps> = ({
                 <Bar dataKey="marks" name="Exam Marks" fill="#0891b2" radius={[3, 3, 0, 0]} />
                 <Bar dataKey="attendance" name="Attendance %" fill="#059669" radius={[3, 3, 0, 0]} />
               </BarChart>
-            </ResponsiveContainer>
-          </div>
-        </div>
-
-        {/* Soft Skills Radar */}
-        <div className="bg-white rounded-xl border border-slate-200/90 p-5 shadow-2xs">
-          <h3 className="font-bold text-slate-900 text-sm mb-0.5">Soft Skills Competency Radar</h3>
-          <p className="text-xs text-slate-500 mb-3">5-dimensional behavioral evaluation (Composite Avg: {student.skills.soft_skills_avg.toFixed(1)}/100)</p>
-
-          <div className="h-60 flex items-center justify-center">
-            <ResponsiveContainer width="100%" height="100%">
-              <RadarChart data={softSkillsRadar}>
-                <PolarGrid stroke="#e2e8f0" />
-                <PolarAngleAxis dataKey="skill" stroke="#64748b" fontSize={10} />
-                <PolarRadiusAxis domain={[0, 100]} stroke="#cbd5e1" fontSize={9} />
-                <Radar name="Score" dataKey="score" stroke="#0891b2" fill="#0891b2" fillOpacity={0.3} />
-                <Tooltip contentStyle={tooltipStyle} />
-              </RadarChart>
             </ResponsiveContainer>
           </div>
         </div>
