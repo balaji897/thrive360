@@ -18,6 +18,7 @@ def get_student_segments():
     return app_state.integrator.segmentation.generate_segments(app_state.students)
 
 @router.get("/risks")
+@router.get("/risk-heatmap")
 def get_risk_analytics():
     students = app_state.students
 

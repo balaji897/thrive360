@@ -5,6 +5,7 @@ from app.schemas.data_quality import DataQualityReport
 router = APIRouter(prefix="/data-quality", tags=["Data Quality"])
 
 @router.get("", response_model=DataQualityReport)
+@router.get("/report", response_model=DataQualityReport)
 def get_data_quality_report():
     if not app_state.data_quality_report:
         # Re-trigger integration if needed
