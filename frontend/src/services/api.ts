@@ -28,22 +28,20 @@ import {
  * Resolves the backend API base URL.
  * Supports VITE_API_BASE_URL environment variable provided by Vercel or local .env.
  * Automatically cleans trailing slashes and ensures the '/api/v1' prefix is correctly formatted
- * without omission or duplication. Falls back to '/api/v1' for local Vite dev proxy.
+ * without omission or duplication. Falls back to the verified Render production backend.
  */
 export function resolveApiBaseUrl(rawBaseUrl?: string): string {
   const envUrl = (
     rawBaseUrl ??
-    (typeof import.meta !== 'undefined' ? (import.meta as any)?.env?.VITE_API_BASE_URL : '')
-  ) || '';
-  const trimmed = envUrl.trim();
+    (typeof import.meta !== 'undefined' && import.meta.env ? import.meta.env.VITE_API_BASE_URL : '') ??
+    ''
+  ).trim();
 
-  // If unset or empty, use relative path (works with Vite dev server proxy in development)
-  if (!trimmed) {
-    return '/api/v1';
-  }
+  // If unset or empty, default to the verified live Render backend URL
+  const target = envUrl || 'https://thrive360-m7fe.onrender.com';
 
   // Remove trailing slashes
-  const clean = trimmed.replace(/\/+$/, '');
+  const clean = target.replace(/\/+$/, '');
 
   // If the provided URL already ends with '/api/v1', keep it as is
   if (clean.endsWith('/api/v1')) {
