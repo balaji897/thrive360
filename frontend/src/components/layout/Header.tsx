@@ -32,9 +32,6 @@ export const Header: React.FC<HeaderProps> = ({
             <h1 className="text-sm font-bold tracking-tight text-[#1E1B4B] font-display">
               Thrive360 <span className="text-[#5B52E0]">Edu-Center</span>
             </h1>
-            <span className="inline-flex items-center px-2 py-0.5 rounded-lg text-[9px] font-bold bg-[#5B52E0]/10 text-[#5B52E0]">
-              KPMG Hackathon
-            </span>
           </div>
           <p className="text-[10px] text-slate-400 font-medium leading-none mt-0.5">
             QISCET Smart Campus Analytics Workspace
