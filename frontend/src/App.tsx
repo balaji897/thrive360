@@ -16,6 +16,58 @@ import { CreateInterventionModal } from './components/interventions/CreateInterv
 import { UserSession } from './types';
 import { api } from './services/api';
 
+const VALID_NAV_TABS: NavTab[] = [
+  'dashboard',
+  'students',
+  'faculty',
+  'profile',
+  'analytics',
+  'interventions',
+  'data-quality',
+  'login',
+  'student-dashboard',
+  'faculty-dashboard'
+];
+
+function getInitialTabFromUrl(session: UserSession | null): NavTab {
+  if (!session) {
+    return 'login';
+  }
+
+  let routeCandidate: string | null = null;
+  if (typeof window !== 'undefined') {
+    const path = window.location.pathname.replace(/^\/+/, '').split('/')[0].trim();
+    if (path) {
+      routeCandidate = path;
+    } else if (window.location.hash) {
+      routeCandidate = window.location.hash.replace(/^#[/]?/, '').split('/')[0].trim();
+    }
+  }
+
+  const requestedTab = (routeCandidate && VALID_NAV_TABS.includes(routeCandidate as NavTab))
+    ? (routeCandidate as NavTab)
+    : null;
+
+  if (session.portal === 'student') {
+    if (requestedTab === 'student-dashboard' || requestedTab === 'profile') {
+      return requestedTab;
+    }
+    return 'student-dashboard';
+  }
+
+  if (session.portal === 'faculty') {
+    if (requestedTab && requestedTab !== 'student-dashboard' && requestedTab !== 'login') {
+      return requestedTab;
+    }
+    return 'faculty-dashboard';
+  }
+
+  if (requestedTab && requestedTab !== 'login') {
+    return requestedTab;
+  }
+  return 'dashboard';
+}
+
 export const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<UserSession | null>(() => {
     try {
@@ -29,13 +81,11 @@ export const App: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<NavTab>(() => {
     try {
       const stored = sessionStorage.getItem('thrive360_session');
-      if (stored) {
-        const session = JSON.parse(stored);
-        if (session.portal === 'student') return 'student-dashboard';
-        if (session.portal === 'faculty') return 'faculty-dashboard';
-      }
-    } catch {}
-    return 'dashboard';
+      const session: UserSession | null = stored ? JSON.parse(stored) : null;
+      return getInitialTabFromUrl(session);
+    } catch {
+      return 'login';
+    }
   });
 
   const [selectedStudentId, setSelectedStudentId] = useState<string>('STU001');
@@ -60,22 +110,48 @@ export const App: React.FC = () => {
 
   // Route guarding
   useEffect(() => {
-    if (currentUser?.portal === 'student') {
+    if (!currentUser) {
+      if (currentTab !== 'login') {
+        setCurrentTab('login');
+      }
+      if (typeof window !== 'undefined' && window.location.pathname !== '/' && window.location.pathname !== '/login') {
+        window.history.replaceState(null, '', '/login');
+      }
+      return;
+    }
+
+    if (currentUser.portal === 'student') {
       if (currentTab !== 'student-dashboard' && currentTab !== 'login' && currentTab !== 'profile') {
         setAccessDeniedMessage(`Access restricted: Student account (${currentUser.user_id}) cannot access administrative or directory routes.`);
         setCurrentTab('student-dashboard');
       }
-    } else if (currentUser?.portal === 'faculty') {
+    } else if (currentUser.portal === 'faculty') {
       if (currentTab === 'student-dashboard') {
         setAccessDeniedMessage('Access restricted: Faculty accounts cannot access the private student portal.');
         setCurrentTab('faculty-dashboard');
       }
-    } else if (!currentUser) {
-      if (currentTab === 'student-dashboard' || currentTab === 'faculty-dashboard') {
-        setCurrentTab('login');
-      }
     }
   }, [currentUser, currentTab]);
+
+  // Synchronize browser URL with current tab
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const targetPath = currentTab === 'login' ? '/login' : `/${currentTab}`;
+    if (window.location.pathname !== targetPath) {
+      window.history.replaceState(null, '', targetPath);
+    }
+  }, [currentTab]);
+
+  // Handle browser back/forward navigation
+  useEffect(() => {
+    const handlePopState = () => {
+      const tab = getInitialTabFromUrl(currentUser);
+      setCurrentTab(tab);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [currentUser]);
 
   const handleSelectStudent = (id: string) => {
     setSelectedStudentId(id);
@@ -127,21 +203,28 @@ export const App: React.FC = () => {
     setCurrentUser(null);
     setAccessDeniedMessage(null);
     setCurrentTab('login');
+    if (typeof window !== 'undefined') {
+      window.history.replaceState(null, '', '/login');
+    }
   };
 
   if (currentTab === 'login') {
     return (
       <LoginPage
         onLoginSuccess={handleLoginSuccess}
-        onNavigateToDashboard={() => {
-          if (currentUser?.portal === 'student') {
-            setCurrentTab('student-dashboard');
-          } else if (currentUser?.portal === 'faculty') {
-            setCurrentTab('faculty-dashboard');
-          } else {
-            setCurrentTab('dashboard');
-          }
-        }}
+        onNavigateToDashboard={
+          currentUser
+            ? () => {
+                if (currentUser.portal === 'student') {
+                  setCurrentTab('student-dashboard');
+                } else if (currentUser.portal === 'faculty') {
+                  setCurrentTab('faculty-dashboard');
+                } else {
+                  setCurrentTab('dashboard');
+                }
+              }
+            : undefined
+        }
       />
     );
   }

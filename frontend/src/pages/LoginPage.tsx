@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   GraduationCap,
   ShieldCheck,
@@ -64,6 +64,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({
     inst.code.toLowerCase().includes(instituteSearch.toLowerCase())
   );
 
+  // Pre-warm backend connection on mount to eliminate cold-start / TLS handshake latency on first login click
+  useEffect(() => {
+    api.getHealth().catch(() => {
+      // Non-blocking background pre-warm request silently catches errors
+    });
+  }, []);
+
   const handlePortalSwitch = (newPortal: AuthPortal) => {
     setPortal(newPortal);
     setErrorMsg(null);
@@ -78,6 +85,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({
     setPassword(pass);
     setValidationErrors({});
     setErrorMsg(null);
+    // Extra warm-up trigger on user interaction if needed
+    api.getHealth().catch(() => {});
   };
 
   const validateInputs = (): boolean => {
@@ -99,6 +108,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return; // Prevent duplicate submissions while request is pending
+
     setErrorMsg(null);
     setSuccessMsg(null);
 
@@ -107,6 +118,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
     }
 
     setLoading(true);
+    const startTime = typeof performance !== 'undefined' ? performance.now() : Date.now();
     try {
       const response = await api.login({
         portal,
@@ -115,6 +127,10 @@ export const LoginPage: React.FC<LoginPageProps> = ({
       });
 
       if (response.success && response.access_token) {
+        if (import.meta.env.DEV) {
+          const duration = Math.round((typeof performance !== 'undefined' ? performance.now() : Date.now()) - startTime);
+          console.debug(`[Auth] Login completed in ${duration}ms`);
+        }
         setSuccessMsg(`Access Granted: Welcome, ${response.name}!`);
         const session: UserSession = {
           user_id: response.user_id,
@@ -126,21 +142,22 @@ export const LoginPage: React.FC<LoginPageProps> = ({
         };
         sessionStorage.setItem('thrive360_session', JSON.stringify(session));
 
+        // Snappy transition with brief confirmation feedback, keeping loading locked to prevent double submits
         setTimeout(() => {
           if (onLoginSuccess) {
             onLoginSuccess(session);
           } else if (onNavigateToDashboard) {
             onNavigateToDashboard();
           }
-        }, 800);
+        }, 150);
       } else {
+        setLoading(false);
         setErrorMsg(response.message || 'Authentication failed. Please verify credentials.');
       }
     } catch (err: any) {
+      setLoading(false);
       console.error('Authentication error:', err);
       setErrorMsg(err.message || 'Unable to connect to authentication server. Please try again.');
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -484,7 +501,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
                 {loading ? (
                   <>
                     <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    <span>Verifying Credentials...</span>
+                    <span>{successMsg ? 'Entering Portal...' : 'Verifying Credentials...'}</span>
                   </>
                 ) : (
                   <>
