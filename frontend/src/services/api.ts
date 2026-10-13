@@ -84,6 +84,9 @@ async function handleResponse<T>(res: Response): Promise<T> {
     if (res.status === 401) {
       // Clear expired session if 401 returned
       sessionStorage.removeItem('thrive360_session');
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('thrive360_session_expired'));
+      }
     }
 
     let detailMsg = '';
@@ -121,9 +124,19 @@ async function handleResponse<T>(res: Response): Promise<T> {
 }
 
 export const api = {
-  getHealth: async () => {
-    const res = await fetch(`${API_BASE}/health`);
-    return handleResponse<{ status: string; students_loaded: number; data_integrated: boolean }>(res);
+  getHealth: async (options?: { timeoutMs?: number; signal?: AbortSignal }) => {
+    const timeoutMs = options?.timeoutMs ?? 60000;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const signal = options?.signal ?? controller.signal;
+      const res = await fetch(`${API_BASE}/health`, { signal });
+      clearTimeout(timeoutId);
+      return handleResponse<{ status: string; students_loaded: number; data_integrated: boolean }>(res);
+    } catch (err: any) {
+      clearTimeout(timeoutId);
+      throw err;
+    }
   },
 
   getDashboardSummary: async (): Promise<ExecutiveSummary> => {
@@ -374,13 +387,35 @@ export const api = {
     return handleResponse<FacultyMember>(res);
   },
 
-  login: async (credentials: LoginRequest): Promise<LoginResponse> => {
-    const res = await fetch(`${API_BASE}/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(credentials),
-    });
-    return handleResponse<LoginResponse>(res);
+  login: async (credentials: LoginRequest, options?: { timeoutMs?: number; signal?: AbortSignal }): Promise<LoginResponse> => {
+    const t0 = typeof performance !== 'undefined' ? performance.now() : Date.now();
+    const timeoutMs = options?.timeoutMs ?? 75000; // 75 seconds safely accommodates Render cold start
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+      const signal = options?.signal ?? controller.signal;
+      const res = await fetch(`${API_BASE}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(credentials),
+        signal,
+      });
+      clearTimeout(timeoutId);
+      const data = await handleResponse<LoginResponse>(res);
+      const duration = Math.round((typeof performance !== 'undefined' ? performance.now() : Date.now()) - t0);
+      console.info(`[Auth] POST /auth/login succeeded in ${duration}ms`);
+      return data;
+    } catch (err: any) {
+      clearTimeout(timeoutId);
+      const duration = Math.round((typeof performance !== 'undefined' ? performance.now() : Date.now()) - t0);
+      if (err?.name === 'AbortError') {
+        console.warn(`[Auth] POST /auth/login timed out after ${duration}ms`);
+        throw new Error('Authentication request timed out. The server is likely warming up from inactivity—please try again in a few moments.');
+      }
+      console.error(`[Auth] POST /auth/login failed after ${duration}ms:`, err?.message);
+      throw err;
+    }
   },
 
   getCurrentUser: async (token: string): Promise<UserSession> => {

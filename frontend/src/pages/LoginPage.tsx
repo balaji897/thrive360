@@ -38,6 +38,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
 
   // Form states
   const [loading, setLoading] = useState(false);
+  const [coldStartNotice, setColdStartNotice] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [validationErrors, setValidationErrors] = useState<{ identifier?: string; password?: string }>({});
@@ -66,9 +67,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({
 
   // Pre-warm backend connection on mount to eliminate cold-start / TLS handshake latency on first login click
   useEffect(() => {
-    api.getHealth().catch(() => {
+    const controller = new AbortController();
+    api.getHealth({ signal: controller.signal }).catch(() => {
       // Non-blocking background pre-warm request silently catches errors
     });
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   const handlePortalSwitch = (newPortal: AuthPortal) => {
@@ -85,8 +90,6 @@ export const LoginPage: React.FC<LoginPageProps> = ({
     setPassword(pass);
     setValidationErrors({});
     setErrorMsg(null);
-    // Extra warm-up trigger on user interaction if needed
-    api.getHealth().catch(() => {});
   };
 
   const validateInputs = (): boolean => {
@@ -118,6 +121,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({
     }
 
     setLoading(true);
+    setColdStartNotice(false);
+
+    // If request takes longer than 2.5s, inform user about Render cold start warming
+    const coldTimer = setTimeout(() => {
+      setColdStartNotice(true);
+    }, 2500);
+
     const startTime = typeof performance !== 'undefined' ? performance.now() : Date.now();
     try {
       const response = await api.login({
@@ -126,11 +136,12 @@ export const LoginPage: React.FC<LoginPageProps> = ({
         password
       });
 
+      clearTimeout(coldTimer);
+      setColdStartNotice(false);
+
       if (response.success && response.access_token) {
-        if (import.meta.env.DEV) {
-          const duration = Math.round((typeof performance !== 'undefined' ? performance.now() : Date.now()) - startTime);
-          console.debug(`[Auth] Login completed in ${duration}ms`);
-        }
+        const duration = Math.round((typeof performance !== 'undefined' ? performance.now() : Date.now()) - startTime);
+        console.info(`[Auth] Login completed successfully in ${duration}ms`);
         setSuccessMsg(`Access Granted: Welcome, ${response.name}!`);
         const session: UserSession = {
           user_id: response.user_id,
@@ -149,12 +160,15 @@ export const LoginPage: React.FC<LoginPageProps> = ({
           } else if (onNavigateToDashboard) {
             onNavigateToDashboard();
           }
+          setLoading(false);
         }, 150);
       } else {
         setLoading(false);
         setErrorMsg(response.message || 'Authentication failed. Please verify credentials.');
       }
     } catch (err: any) {
+      clearTimeout(coldTimer);
+      setColdStartNotice(false);
       setLoading(false);
       console.error('Authentication error:', err);
       setErrorMsg(err.message || 'Unable to connect to authentication server. Please try again.');
@@ -501,7 +515,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({
                 {loading ? (
                   <>
                     <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                    <span>{successMsg ? 'Entering Portal...' : 'Verifying Credentials...'}</span>
+                    <span>
+                      {successMsg
+                        ? 'Entering Portal...'
+                        : coldStartNotice
+                        ? 'Waking cloud server (Render cold start)...'
+                        : 'Verifying Credentials...'}
+                    </span>
                   </>
                 ) : (
                   <>
@@ -510,6 +530,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({
                   </>
                 )}
               </button>
+
+              {/* Informative Cold Start Subtitle */}
+              {loading && coldStartNotice && !successMsg && (
+                <p className="text-[11px] text-amber-300/90 text-center animate-in fade-in duration-300">
+                  Cloud instance is waking from inactivity on Render. Initial boot may take ~30–60s.
+                </p>
+              )}
             </form>
 
             {/* "Not your institute?" Search and Registration Flow */}

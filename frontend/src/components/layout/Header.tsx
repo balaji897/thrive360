@@ -45,13 +45,15 @@ export const Header: React.FC<HeaderProps> = ({
           <span>{studentCount} Verified Profiles</span>
         </div>
 
-        <button
-          onClick={onOpenWeights}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-[#5B52E0] bg-[#F4F5F9] hover:bg-slate-200/70 border border-transparent rounded-xl transition cursor-pointer"
-        >
-          <Sliders className="w-3.5 h-3.5 text-[#5B52E0]" />
-          <span>Score Weights</span>
-        </button>
+        {currentUser?.portal !== 'student' && (
+          <button
+            onClick={onOpenWeights}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-[#5B52E0] bg-[#F4F5F9] hover:bg-slate-200/70 border border-transparent rounded-xl transition cursor-pointer"
+          >
+            <Sliders className="w-3.5 h-3.5 text-[#5B52E0]" />
+            <span>Score Weights</span>
+          </button>
+        )}
 
         {currentUser ? (
           <div className="flex items-center gap-2">

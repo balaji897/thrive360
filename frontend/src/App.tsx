@@ -29,8 +29,94 @@ const VALID_NAV_TABS: NavTab[] = [
   'faculty-dashboard'
 ];
 
-function getInitialTabFromUrl(session: UserSession | null): NavTab {
-  if (!session) {
+/**
+ * Safely decodes a JWT payload without external dependencies.
+ */
+export function parseJwtPayload(token: string): Record<string, any> | null {
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) return null;
+    const base64Url = parts[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    if (typeof atob !== 'function') return null;
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+    return JSON.parse(jsonPayload);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Validates that an object represents an authenticated UserSession.
+ * Validates token structure, portal alignment, user ID match, and expiration timestamp.
+ */
+export function isValidSession(session: any): session is UserSession {
+  if (!session || typeof session !== 'object') return false;
+  if (typeof session.user_id !== 'string' || !session.user_id.trim()) return false;
+  if (session.portal !== 'student' && session.portal !== 'faculty') return false;
+  if (typeof session.access_token !== 'string' || !session.access_token.trim()) return false;
+
+  // Validate the JWT token structure and expiration
+  const claims = parseJwtPayload(session.access_token);
+  if (!claims || typeof claims !== 'object') {
+    return false;
+  }
+
+  // Check token expiration if present
+  if (typeof claims.exp === 'number') {
+    const nowSeconds = Math.floor(Date.now() / 1000);
+    if (nowSeconds >= claims.exp) {
+      return false; // Token has expired
+    }
+  }
+
+  // Verify portal and identity match JWT claims
+  if (claims.portal && claims.portal !== session.portal) {
+    return false;
+  }
+  if (claims.sub && claims.sub !== session.user_id) {
+    return false;
+  }
+
+  return true;
+}
+
+/**
+ * Retrieves and validates the stored session from sessionStorage.
+ * Cleans corrupted session records automatically.
+ */
+export function getStoredSession(): UserSession | null {
+  try {
+    if (typeof window === 'undefined') return null;
+    const stored = sessionStorage.getItem('thrive360_session');
+    if (!stored) return null;
+    const session = JSON.parse(stored);
+    if (isValidSession(session)) {
+      return session;
+    }
+    sessionStorage.removeItem('thrive360_session');
+    return null;
+  } catch {
+    try {
+      if (typeof window !== 'undefined') {
+        sessionStorage.removeItem('thrive360_session');
+      }
+    } catch {}
+    return null;
+  }
+}
+
+/**
+ * Resolves the initial active tab from the browser URL, strictly enforcing role boundaries.
+ * Unauthenticated users always resolve to 'login'.
+ */
+export function getInitialTabFromUrl(session: UserSession | null): NavTab {
+  if (!session || !isValidSession(session)) {
     return 'login';
   }
 
@@ -62,30 +148,17 @@ function getInitialTabFromUrl(session: UserSession | null): NavTab {
     return 'faculty-dashboard';
   }
 
-  if (requestedTab && requestedTab !== 'login') {
-    return requestedTab;
-  }
-  return 'dashboard';
+  return 'login';
 }
 
 export const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<UserSession | null>(() => {
-    try {
-      const stored = sessionStorage.getItem('thrive360_session');
-      return stored ? JSON.parse(stored) : null;
-    } catch {
-      return null;
-    }
+    return getStoredSession();
   });
 
   const [currentTab, setCurrentTab] = useState<NavTab>(() => {
-    try {
-      const stored = sessionStorage.getItem('thrive360_session');
-      const session: UserSession | null = stored ? JSON.parse(stored) : null;
-      return getInitialTabFromUrl(session);
-    } catch {
-      return 'login';
-    }
+    const session = getStoredSession();
+    return getInitialTabFromUrl(session);
   });
 
   const [selectedStudentId, setSelectedStudentId] = useState<string>('STU001');
@@ -108,13 +181,13 @@ export const App: React.FC = () => {
   // Key to force re-render/refetch of active page when weights change
   const [refreshKey, setRefreshKey] = useState(0);
 
-  // Route guarding
+  // Strict route guarding
   useEffect(() => {
-    if (!currentUser) {
+    if (!currentUser || !isValidSession(currentUser)) {
       if (currentTab !== 'login') {
         setCurrentTab('login');
       }
-      if (typeof window !== 'undefined' && window.location.pathname !== '/' && window.location.pathname !== '/login') {
+      if (typeof window !== 'undefined' && window.location.pathname !== '/login') {
         window.history.replaceState(null, '', '/login');
       }
       return;
@@ -136,24 +209,96 @@ export const App: React.FC = () => {
   // Synchronize browser URL with current tab
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const targetPath = currentTab === 'login' ? '/login' : `/${currentTab}`;
+    const targetPath = (!currentUser || !isValidSession(currentUser) || currentTab === 'login')
+      ? '/login'
+      : `/${currentTab}`;
     if (window.location.pathname !== targetPath) {
       window.history.replaceState(null, '', targetPath);
     }
-  }, [currentTab]);
+  }, [currentTab, currentUser]);
 
   // Handle browser back/forward navigation
   useEffect(() => {
     const handlePopState = () => {
-      const tab = getInitialTabFromUrl(currentUser);
+      const stored = getStoredSession();
+      if (!stored) {
+        setCurrentUser(null);
+        setCurrentTab('login');
+        if (typeof window !== 'undefined' && window.location.pathname !== '/login') {
+          window.history.replaceState(null, '', '/login');
+        }
+        return;
+      }
+      setCurrentUser(stored);
+      const tab = getInitialTabFromUrl(stored);
       setCurrentTab(tab);
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, [currentUser]);
+  }, []);
+
+  // Multi-tab sync and 401 session expiry listener
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'thrive360_session') {
+        if (!e.newValue) {
+          setCurrentUser(null);
+          setCurrentTab('login');
+          if (typeof window !== 'undefined' && window.location.pathname !== '/login') {
+            window.history.replaceState(null, '', '/login');
+          }
+        } else {
+          try {
+            const parsed = JSON.parse(e.newValue);
+            if (isValidSession(parsed)) {
+              setCurrentUser(parsed);
+              setCurrentTab(getInitialTabFromUrl(parsed));
+            }
+          } catch {}
+        }
+      }
+    };
+
+    const handleSessionExpired = () => {
+      setCurrentUser(null);
+      setCurrentTab('login');
+      setAccessDeniedMessage('Your session has expired. Please log in again.');
+      if (typeof window !== 'undefined' && window.location.pathname !== '/login') {
+        window.history.replaceState(null, '', '/login');
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('thrive360_session_expired', handleSessionExpired);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('thrive360_session_expired', handleSessionExpired);
+    };
+  }, []);
+
+  // Background token verification with backend on mount/refresh
+  useEffect(() => {
+    if (currentUser?.access_token) {
+      api.getCurrentUser(currentUser.access_token).catch((err: any) => {
+        if (err?.message?.includes('401') || err?.message?.toLowerCase().includes('unauthorized')) {
+          sessionStorage.removeItem('thrive360_session');
+          setCurrentUser(null);
+          setCurrentTab('login');
+          setAccessDeniedMessage('Session expired or invalidated by server. Please sign in again.');
+          if (typeof window !== 'undefined') {
+            window.history.replaceState(null, '', '/login');
+          }
+        }
+      });
+    }
+  }, []);
 
   const handleSelectStudent = (id: string) => {
+    if (!currentUser || !isValidSession(currentUser)) {
+      setCurrentTab('login');
+      return;
+    }
     setSelectedStudentId(id);
     setAccessDeniedMessage(null);
     setRefreshKey(k => k + 1);
@@ -161,6 +306,14 @@ export const App: React.FC = () => {
   };
 
   const handleNavigateToStudentsWithFilter = (filter?: { academic_risk?: string; placement_risk?: string }) => {
+    if (!currentUser || !isValidSession(currentUser)) {
+      setCurrentTab('login');
+      return;
+    }
+    if (currentUser.portal === 'student') {
+      setAccessDeniedMessage(`Access restricted: Student account (${currentUser.user_id}) cannot access administrative or directory routes.`);
+      return;
+    }
     setStudentDirectoryFilter(filter);
     setCurrentTab('students');
   };
@@ -177,11 +330,16 @@ export const App: React.FC = () => {
     description?: string,
     priority?: string
   ) => {
+    if (!currentUser || !isValidSession(currentUser)) {
+      setCurrentTab('login');
+      return;
+    }
     setInterventionPrefill({ id, name, category, title, description, priority });
     setIsInterventionModalOpen(true);
   };
 
   const handleLoginSuccess = (session: UserSession) => {
+    sessionStorage.setItem('thrive360_session', JSON.stringify(session));
     setCurrentUser(session);
     setAccessDeniedMessage(null);
     if (session.portal === 'student') {
@@ -208,12 +366,13 @@ export const App: React.FC = () => {
     }
   };
 
-  if (currentTab === 'login') {
+  // Synchronous authentication gate: unauthenticated users ALWAYS see LoginPage with 0ms flash
+  if (!currentUser || !isValidSession(currentUser) || currentTab === 'login') {
     return (
       <LoginPage
         onLoginSuccess={handleLoginSuccess}
         onNavigateToDashboard={
-          currentUser
+          currentUser && isValidSession(currentUser)
             ? () => {
                 if (currentUser.portal === 'student') {
                   setCurrentTab('student-dashboard');
@@ -281,12 +440,20 @@ export const App: React.FC = () => {
         <Sidebar
           currentTab={currentTab}
           onTabChange={tab => {
+            if (!currentUser || !isValidSession(currentUser)) {
+              setCurrentTab('login');
+              return;
+            }
             if (tab === 'students') {
               setStudentDirectoryFilter(undefined);
             }
             // Enforce student guard on click
-            if (currentUser?.portal === 'student' && tab !== 'student-dashboard' && tab !== 'login' && tab !== 'profile') {
+            if (currentUser.portal === 'student' && tab !== 'student-dashboard' && tab !== 'login' && tab !== 'profile') {
               setAccessDeniedMessage(`Access restricted: Student account (${currentUser.user_id}) cannot access administrative or directory routes.`);
+              return;
+            }
+            if (currentUser.portal === 'faculty' && tab === 'student-dashboard') {
+              setAccessDeniedMessage('Access restricted: Faculty accounts cannot access the private student portal.');
               return;
             }
             setCurrentTab(tab);
